@@ -10,7 +10,7 @@ const CommentForm = ({ addComment }) => {
             alert("Please fill in the comment field.");
             return;
         }
-        addComment({ name: "BrainFlix", comment: comment.trim() }); // Example using a fixed name
+        addComment({ name: "BrainFlix", comment: comment.trim() });
         setComment('');
     };
 

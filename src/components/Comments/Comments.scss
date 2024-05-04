@@ -1,18 +1,16 @@
-.comments {
-    .comments__title {
-        margin-bottom: 20px;
-    }
-    .comments__item {
-        display: flex;
-        margin: 10px 0;
+@import "../../styles/mixin";
+@import "../../styles/variables";
 
-        &__user-icon {
-            width: 40px;
-            height: 40px;
-            background-color: #ccc;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
+.comments {
+    padding-left: $padding-horizontal;
+    padding-right: $padding-horizontal;
+
+    &__item {
+        display: flex;
+        margin: 5px 0;
+        border-bottom: 1px solid $border-color;
+        padding-bottom: 15px;
+        margin-bottom: 5px;
 
         &__content {
             flex-grow: 1;
@@ -21,9 +19,35 @@
         &__author {
             font-weight: bold;
         }
-
-        &__text {
-            margin-top: 5px;
-        }
     }
+
+    &__from {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+.comments-title {
+    margin-left: $margin-side;
+}
+
+.comments__user-icon {
+    margin-right: $margin-side;
+    margin-top: $margin-side;
+    position: relative;
+
+    &::after {
+        content: "";
+        background-color: $beige-color;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        background-size: cover;
+        background-position: center;
+        display: block;
+    }
+}
+
+.comments__text {
+    margin: 0;
 }

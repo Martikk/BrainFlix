@@ -25,8 +25,8 @@ const CommentsContainer = ({ videoId }) => {
     return (
         <div className="comments-container">
             <h3 className="comments-title">Comments</h3>
-            <Comments comments={comments} />
             <CommentForm addComment={addComment} />
+            <Comments comments={comments} />
         </div>
     );
 };

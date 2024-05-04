@@ -1,41 +1,60 @@
+@import "../../styles/mixin";
+@import "../../styles/variables";
+
 .video-list {
     list-style: none; 
     padding-left: 0; 
     margin: 0;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: flex-start;
 
+    @include desktop {
+        position: absolute;
+        right: 0;
+        width: 30%;
+    }
+      
     .video-list__item {
         display: flex;
         cursor: pointer;
-        margin: 10px 0;
-        
-
-
+        align-items: center;
         &:hover {
-            background-color: #f0f0f0;
+            background-color: $video-bg-hover;
         }
 
         img {
-            width: 120px;
-            height: 70px;
-            margin-right: 10px;
+            width: nth($image-size, 1);
+            height: nth($image-size, 2);
+            margin-right: $video-margin-right;
+            padding: $padding-standard;
+            border-radius: $border-radius-large;
         }
+
         &__thumbnail {
-            width: 120px;
-            height: 70px;
-            margin-right: 10px;
+            width: nth($thumbnail-size, 1);
+            height: nth($thumbnail-size, 2);
+            margin-right: $video-margin-right;
         }
 
         &__info {
             display: flex;
             flex-direction: column;
             justify-content: center;
+            margin: 0;
+            padding: 0;
+            align-content: space-between;
         }
 
-        &__title, &__author {
-            margin: 2px;
+        &__title, &__author { 
         }
     }
+}
+
+.video-list__title, .video-list__channel {
+    margin: 0;
+}
+
+.video-list__title {
+    margin-bottom: 35px;
 }

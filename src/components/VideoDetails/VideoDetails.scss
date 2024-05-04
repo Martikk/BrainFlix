@@ -1,0 +1,81 @@
+@import "../../styles/mixin";
+@import "../../styles/variables";
+
+.hero {
+  &__stats {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    border-top: 1px solid $border-color;
+    border-bottom: 1px solid $border-color;
+    padding: 20px 0;
+
+    @include desktop {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+
+  &__channel {
+    width: 50%;
+    margin-left: $stat-margin;
+
+    @include desktop {
+      width: 45%;
+      display: flex;
+    }
+  }
+
+  &__views,
+  &__like {
+    display: flex;
+    align-items: center;
+    margin-right: $stat-margin; 
+    padding: 5px 0;
+
+    @include desktop {
+      margin-right: 0; 
+      margin: 0 $stat-margin;
+    }
+    
+    &::before {
+      display: inline-block;
+      width: $icon-size;
+      height: $icon-height;
+      margin-right: 2px;
+      vertical-align: middle;
+    }
+  }
+
+  &__views::before {
+    content: url('../../assets/Icons/views.svg');
+  }
+
+  &__like::before {
+    content: url('../../assets/Icons/likes.svg');
+  }
+
+  &__statistic {
+    @include desktop {
+      display: flex;
+      align-items: center;
+    }
+  }
+
+  h2, h4 {
+    margin: 0;
+    padding: 5px 0;
+  }
+}
+
+.hero__channel__author {
+  @include desktop {
+    margin: 0;
+  }
+}
+
+.hero__channel__data {
+  @include desktop {
+    margin: 6px 40px;
+    }
+}

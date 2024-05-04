@@ -1,64 +1,105 @@
+@import "../../styles/mixin";
+@import "../../styles/variables";
+
 .header {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: #ffffff;
-    color: white;
+    background-color: $header-bg-color;
+    color: $white-color;
+
+    @include desktop {
+        margin-right: 20%;
+        flex-direction: row;
+        justify-content: flex-start;
+        width: 95%;
+    }
   
     &__logo {
-        background: url('../../assets/Logo/BrainFlix-logo.svg')no-repeat center;
+        background: url('../../assets/Logo/BrainFlix-logo.svg') no-repeat center;
         height: 30px;
         width: 120px;
         margin-bottom: 20px;
-        // margin-right: 20%;
+
+        @include desktop {
+            margin: 0;
+            margin-right: 27%;
+            padding-left: 150px;
+        }
     }
   
     &__search {
         width: 300px;
         height: 40px;
-        margin: 0 20px;
-        margin-right: 90px;
         background: url('../../assets/Icons/search.svg') no-repeat 10px center / 20px 20px;
         padding-left: 40px; 
-        margin-bottom: 20px;
         position: relative;
-        
+        margin-bottom: 20px;
+
+        @include desktop {
+            width: 250px;
+            margin-bottom: 0;
+            margin: 0 10px;
+            position: unset;
+        }
     }
   
     &__upload {
-      background: url('../../assets/Icons/upload.svg') no-repeat 0px center / 20px 20px;
-      background-color: #00aaff;
-      color: white;
-      padding: 10px 20px;
-      width: 370px;
+        background: url('../../assets/Icons/upload.svg') no-repeat 0 center / 20px 20px;
+        background-color: $button-blue;
+        color: $white-color;
+        padding: 10px 20px;
+        width: 370px;
+
+        @include desktop {
+            width: 150px;
+        }
     }
+
     &__user-icon {
         background-image: url(../../assets/Images/Mohan-muruge.jpg);
         width: 50px;
         height: 50px;
         border-radius: 50%;
         background-size: cover; 
-        background-position: center; 
         position: absolute;
         right: 30px;
         margin-top: 45px;
+        
+        @include desktop {
+            margin-top: 0;
+            margin-right: 100px;
+            width: 60px;
+            height: 50px;
+            margin-left: 30px;
+            position: unset;
+        }
     }
-  }
-  .search-results {
+}
+
+.search-results {
     position: absolute;
     top: 110px;
     left: 10%;
     width: 60%;
-    background: white;
+    background: $white-color;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     z-index: 10;
-    .search-result-item {
-        padding: 10px;
-        border-bottom: 1px solid #ccc;
-        &:hover {
-            background-color: #f0f0f0;
-        }
+
+    @include desktop {
+        top: 80px;
+        width: 30%;
+        left: 47%;
+    }
+}
+
+.search-result-item {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+
+    &:hover {
+        background-color: #f0f0f0;
     }
 }

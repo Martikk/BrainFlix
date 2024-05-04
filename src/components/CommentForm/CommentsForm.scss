@@ -1,19 +1,52 @@
-.comment-form__user-icon {
-    background-image: url(../../assets/Images/Mohan-muruge.jpg);
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-size: cover; 
-    background-position: center; 
-    margin-top: 45px;
-}
+@import "../../styles/mixin";
+@import "../../styles/variables";
 
-.comments__user-icon {
-    background-color: beige;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-size: cover; 
-    background-position: center; 
+.comment-form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding: 20px;
+    padding-bottom: 10px; 
+    margin-bottom: 10px; 
+    border-bottom: 1px solid $border-color;
 
+    @include desktop {
+        flex-wrap: nowrap;
+        align-items: center;
+    }
+
+    &__user-icon {
+        background: url(../../assets/Images/Mohan-muruge.jpg) no-repeat center / cover;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        margin-right: 20px;
+    }
+
+    textarea {
+        width: 79%;
+        height: 120px;
+        resize: none; // Prevent resizing if desired
+
+        @include desktop {
+            width: 70%;
+            height: 40px;
+        }
+    }
+
+    button {
+        margin-top: 20px;
+        width: 80%;
+        background: url('../../assets/Icons/add_comment.svg') no-repeat 10px center / 20px 20px;
+        background-color: $button-blue;
+        height: 50px;
+        border-radius: 5px;
+
+        @include desktop {
+            width: 20%;
+            height: 40px;
+            margin-top: 0px;
+            margin-left: 20px;
+        }
+    }
 }
