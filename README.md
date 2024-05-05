@@ -1,70 +1,80 @@
-# Getting Started with Create React App
+# Sprint 1: Video Sharing Platform
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Overview
 
-## Available Scripts
+This dynamic video sharing platform enables users to explore, watch, and interact with video content. It features a robust frontend built using React, showcasing capabilities like video streaming, dynamic searching, commenting, and responsive layouts.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+### Video Playback
+- **VideoPlayer Component**: Manages video rendering with standard controls and supports multiple video formats.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Dynamic Search
+- **Header Component**: Incorporates a search bar that filters videos based on user input in real-time.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Comments
+- **CommentsContainer**: Manages comments for each video, including posting new comments and displaying existing ones.
+- **CommentForm**: Allows users to submit new comments, ensuring the input field is not empty through form validation.
 
-### `npm test`
+### Video Details
+- **VideoDetails**: Displays detailed information about the video such as the title, uploader, view count, like count, and description.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Video Listing
+- **VideoList**: Lists all videos except the currently playing video, allowing users to select another video to watch.
 
-### `npm run build`
+### Future Enhancements
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Backend Integration: 
+- **To handle data storage and retrieval more efficiently**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Authentication: 
+- **For personalizing user experiences and securing user data**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Advanced Search: 
+- **Enhancing search capabilities with filters by categories or tags**
 
-### `npm run eject`
+## Technologies Used
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- **React**: For efficient DOM management and reusable components.
+- **SCSS**: For styling components using variables and mixins to maintain a consistent style and simplify media queries.
+- **JSON**: Simulates data interaction with a backend using local JSON files for video data and details.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Development Approach
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Component Structure
+Organized into key React components:
+- `Header`: Navigation and dynamic searching.
+- `VideoPlayer`: Video playback rendering.
+- `VideoDetails`: Shows information about the current video.
+- `CommentsContainer`: Manages all comment-related functionalities.
+-- `CommentsForm`: Be able to live a comment.
+- `VideoList`: Displays a clickable list of videos.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### State Management
+Uses React's `useState` and `useEffect` for responsive UI updates based on user interactions and data fetching.
 
-## Learn More
+### Data Handling
+Data is loaded from local JSON files:
+- `videos.json`: Basic information on each video.
+- `video-details.json`: Detailed information including comments and statistics for each video.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Styling
+Styled using SCSS for modularity and responsiveness. Mixins and variables are employed to keep the design coherent.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Code Highlights
 
-### Code Splitting
+### Search Functionality and Comment Fetching and Posting
+```javascript
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+const handleSearchChange = (term) => {
+  setSearchResults(term.trim() ? videos.filter(video =>
+      video.title.toLowerCase().includes(term.toLowerCase())
+  ) : []);
+};
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+const fetchComments = (videoId) => {
+  const videoDetails = videoDetailsData.find(video => video.id === videoId);
+  if (videoDetails && videoDetails.comments) {
+      setComments(videoDetails.comments.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)));
+  }
+};
