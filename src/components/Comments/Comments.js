@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatDistanceToNow } from 'date-fns';
 import './Comments.scss';
 
 function Comments({ comments }) {
@@ -9,11 +10,12 @@ function Comments({ comments }) {
                     <div className="comments__user-icon"></div>
                     <div className="comments__content">
                         <div className="comments__from">
-                        <p className="comments__author">{comment.name}</p>
-                        <p className="comments__date">{new Date(comment.timestamp).toLocaleDateString()}</p>
+                            <h4 className="comments__author">{comment.name}</h4>
+                            <p className="comments__date">
+                                {formatDistanceToNow(new Date(comment.timestamp), { addSuffix: true })}
+                            </p>
                         </div>
                         <p className="comments__text">{comment.comment}</p>
-
                     </div>
                 </div>
             ))}
@@ -22,4 +24,3 @@ function Comments({ comments }) {
 }
 
 export default Comments;
-

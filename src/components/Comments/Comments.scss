@@ -2,52 +2,61 @@
 @import "../../styles/variables";
 
 .comments {
-    padding-left: $padding-horizontal;
-    padding-right: $padding-horizontal;
-
     &__item {
         display: flex;
-        margin: 5px 0;
-        border-bottom: 1px solid $border-color;
+        border-bottom: 1px solid $mercury;
         padding-bottom: 15px;
-        margin-bottom: 5px;
 
         &__content {
             flex-grow: 1;
-        }
-
-        &__author {
-            font-weight: bold;
         }
     }
 
     &__from {
         display: flex;
         justify-content: space-between;
+        padding-right: $padding-horizontal;
     }
-}
+    &__author {
+        font-family:  'Avenir Next Bold';
+        font-size: 0.82rem;
+        margin: 20px 0 10px 20px ;
+        padding: 0;
+    }
 
+    &__date {
+        color: $silver;
+        font-size: 0.82rem;
+        font-family: 'Avenir Next Regular';
+        margin: 20px 0 0 0;
+        padding: 0;
+    }
+
+    &__user-icon {
+        margin-right: $margin-side;
+        margin-top: $margin-side;
+        position: relative;
+    
+        &::after {
+            content: "";
+            background-color: $mercury;
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            display: block;
+        }
+}
+}
 .comments-title {
-    margin-left: $margin-side;
+font-family:  'Avenir Next Bold';
+font-size: 0.8rem;
 }
-
-.comments__user-icon {
-    margin-right: $margin-side;
-    margin-top: $margin-side;
-    position: relative;
-
-    &::after {
-        content: "";
-        background-color: $beige-color;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-size: cover;
-        background-position: center;
-        display: block;
-    }
-}
-
 .comments__text {
     margin: 0;
+    padding-left: 22px;
+    font-family: 'Avenir Next Regular';
+    font-size: 0.82rem;
 }
+

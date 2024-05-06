@@ -17,8 +17,8 @@ const CommentForm = ({ addComment }) => {
     return (
         <form className="comment-form" onSubmit={handleSubmit}>
             <div className="comment-form__user-icon"></div> 
-            <textarea value={comment} onChange={(e) => setComment(e.target.value)} placeholder="Your Comment"></textarea>
-            <button type="submit">Post Comment</button>
+            <textarea value={comment} onChange={(e) => setComment(e.target.value)} placeholder="Add new comment"></textarea>
+            <button type="submit">COMMENT</button>
         </form>
     );
 };

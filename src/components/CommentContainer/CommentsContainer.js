@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Comments from '../Comments/Comments';
 import CommentForm from '../CommentForm/CommentsForm';
-import videoDetailsData from '../../data/video-details.json'; // Путь может отличаться в зависимости от структуры вашего проекта
+import videoDetailsData from '../../data/video-details.json';
 
 const CommentsContainer = ({ videoId }) => {
     const [comments, setComments] = useState([]);
@@ -24,7 +24,10 @@ const CommentsContainer = ({ videoId }) => {
 
     return (
         <div className="comments-container">
-            <h3 className="comments-title">Comments</h3>
+            <h3 className="comments-title">
+                {comments.length} Comments 
+            </h3>
+            <h4 className='comments_titles'>JOIN THE CONVERSATION</h4>
             <CommentForm addComment={addComment} />
             <Comments comments={comments} />
         </div>

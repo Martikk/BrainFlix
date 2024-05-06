@@ -1,6 +1,24 @@
+@import "../../styles/mixin";
+@import "../../styles/variables";
+
 .hero {
     &__video {
       width: 100%;
+      background-color: black;
       height: auto;
-    }
+
+        @include tablet {
+          padding-left: 5%;
+          padding-right: 5%;
+          width: 90%;
+          background-color: black;
+        }
+        
+        @include desktop {
+          padding-left: 17%;
+          padding-right: 17%;
+          width: 67%;
+          background-color: black;
+        }
+}
 }

@@ -1,12 +1,21 @@
 import React, {useState, useEffect} from 'react';
+/* -------------------------------------------------------------------------- */
+/*                                  Component                                 */
+/* -------------------------------------------------------------------------- */
 import Header from './components/Header/Header';
 import VideoPlayer from './components/VideoPlayer/VideoPlayer';
 import VideoDetails from './components/VideoDetails/VideoDetails';
 import VideoList from './components/VideoList/VideoList';
-import './App.scss';
+import CommentsContainer from './components/CommentContainer/CommentsContainer';
+/* -------------------------------------------------------------------------- */
+/*                                    DATA                                    */
+/* -------------------------------------------------------------------------- */
 import videosData from './data/videos.json';
 import videoDetailsData from './data/video-details.json';
-import CommentsContainer from './components/CommentContainer/CommentsContainer';
+/* -------------------------------------------------------------------------- */
+/*                                    scss                                    */
+/* -------------------------------------------------------------------------- */
+import './App.scss';
 
 
 function App() {

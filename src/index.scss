@@ -1,8 +1,24 @@
+@import "./styles/mixin";
+@import "./styles/variables";
+
+@font-face {
+  font-family: 'Avenir Next Regular';
+  src: url('./assets/Font/AvenirNextLTPro-Regular.otf') format('woff');
+}
+
+@font-face {
+  font-family: 'Avenir Next Demi';
+  src: url('./assets/Font/AvenirNextLTPro-Demi.otf') format('woff');
+}
+
+@font-face {
+  font-family: 'Avenir Next Bold';
+  src: url('./assets/Font/AvenirNextLTPro-Bold.otf') format('woff');
+}
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Avenir Next Regular', 'Avenir Next Demi', 'Avenir Next Bold';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

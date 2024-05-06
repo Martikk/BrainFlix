@@ -1,16 +1,17 @@
 @import "../../styles/mixin";
 @import "../../styles/variables";
 
+
 .header {
+    font-family: 'Avenir Next Demi';
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    background-color: $header-bg-color;
-    color: $white-color;
-
-    @include desktop {
+    background-color: $white;
+    
+    @include tablet {
         margin-right: 20%;
         flex-direction: row;
         justify-content: flex-start;
@@ -19,27 +20,44 @@
   
     &__logo {
         background: url('../../assets/Logo/BrainFlix-logo.svg') no-repeat center;
-        height: 30px;
+        height: 25px;
         width: 120px;
         margin-bottom: 20px;
 
-        @include desktop {
+        @include tablet {
             margin: 0;
-            margin-right: 27%;
-            padding-left: 150px;
+            margin-right: 30px;
+            padding-left: 20px;
+        }
+
+        @media (min-width: 1050px) {
+            margin: 0;
+            margin-right: 300px;
+            padding-left: 250px;
         }
     }
   
     &__search {
-        width: 300px;
+        width: 80%;
         height: 40px;
         background: url('../../assets/Icons/search.svg') no-repeat 10px center / 20px 20px;
-        padding-left: 40px; 
-        position: relative;
+        padding: 10px 10px 10px 40px; 
         margin-bottom: 20px;
-
-        @include desktop {
-            width: 250px;
+        border-color: rgba($alabaster, 0.5);
+        border-radius: 4px;
+        background-color: $alabaster;
+        margin-right: 15%;
+        
+        @include tablet {
+            width: 265px;
+            margin-bottom: 0;
+            margin: 0 10px;
+            position: unset;
+            margin-left: 15%;
+            margin-right: 0px;
+        }
+        @media (min-width: 1050px) {
+            width: 265px;
             margin-bottom: 0;
             margin: 0 10px;
             position: unset;
@@ -47,34 +65,66 @@
     }
   
     &__upload {
-        background: url('../../assets/Icons/upload.svg') no-repeat 0 center / 20px 20px;
-        background-color: $button-blue;
-        color: $white-color;
+        background: url('../../assets/Icons/upload.svg') no-repeat 0 center / 40px 20px;
+        background-color: $blue;
+        font-family: 'Avenir Next Bold';
+        font-size: 1rem;
+        color: $white;
         padding: 10px 20px;
         width: 370px;
+        height: 40px;
+        border: none;
+        border-radius: 4px;
+        &:hover {
+            background-color: $dark-blue;
+            cursor: pointer; 
+        }
 
-        @include desktop {
-            width: 150px;
+        @include tablet {
+            width: 160px;
+            margin-left: 10px;
+            margin-right: 10px;
         }
     }
 
     &__user-icon {
         background-image: url(../../assets/Images/Mohan-muruge.jpg);
-        width: 50px;
-        height: 50px;
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
         background-size: cover; 
         position: absolute;
-        right: 30px;
+        right: 8%;
         margin-top: 45px;
-        
-        @include desktop {
+
+        @media (min-width: 768px){
+            margin-top: 0;
+            padding-left: 10px;
+            position: unset;
+        }
+        @media (min-width: 888px){
+            position: unset;
+            padding-left: 10px;
+        }
+        @media (min-width: 1050px){
             margin-top: 0;
             margin-right: 100px;
-            width: 60px;
-            height: 50px;
+            width: 42px;
+            height: 42px;
             margin-left: 30px;
-            position: unset;
+            padding-left: 40px;
+        }
+        @media (min-width: 1200px){
+            padding-left: 30px;
+        }
+        @media (min-width: 1200px){
+            padding-left: 20px;
+        }
+        @media (min-width: 1300px){
+            padding-left: 10px;
+        }
+        @media (min-width: 1350px){
+            padding-left: 0px;
         }
     }
 }
@@ -84,9 +134,15 @@
     top: 110px;
     left: 10%;
     width: 60%;
-    background: $white-color;
+    background: $white;
     box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     z-index: 10;
+
+    @include tablet {
+        top: 80px;
+        width: 30%;
+        left: 37%;
+    }
 
     @include desktop {
         top: 80px;
@@ -97,9 +153,9 @@
 
 .search-result-item {
     padding: 10px;
-    border-bottom: 1px solid #ccc;
+    border-bottom: 1px solid $mercury;
 
     &:hover {
-        background-color: #f0f0f0;
+        background-color: $white;
     }
 }

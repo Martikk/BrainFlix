@@ -9,10 +9,16 @@
     flex-direction: column;
     justify-content: flex-start;
 
-    @include desktop {
+  @include tablet  {
+    padding-left: 40px;
+    padding-right: 30px;
+  }
+  
+    @include desktop  {
         position: absolute;
         right: 0;
         width: 30%;
+        padding-right: 70px;
     }
       
     .video-list__item {
@@ -20,15 +26,23 @@
         cursor: pointer;
         align-items: center;
         &:hover {
-            background-color: $video-bg-hover;
+            background-color: $dark-white;
         }
 
         img {
-            width: nth($image-size, 1);
-            height: nth($image-size, 2);
+            width: 130px;
+            height: 80px;
             margin-right: $video-margin-right;
-            padding: $padding-standard;
-            border-radius: $border-radius-large;
+            padding: 5px;
+            border-radius: 10px;
+            
+            @include tablet  {
+                width: nth($image-size, 1);
+                height: nth($image-size, 2);
+                padding: $padding-standard;
+                border-radius: $border-radius-large;
+              }
+
         }
 
         &__thumbnail {
@@ -48,6 +62,12 @@
 
         &__title, &__author { 
         }
+    }
+
+    &__maintitle {
+        color: $silver;
+        padding-left: 15px;
+        font-size: 0.8rem;
     }
 }
 

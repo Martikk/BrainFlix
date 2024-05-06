@@ -2,6 +2,8 @@
 
 ## Project Overview
 
+Welcome to the official website repository of BranFlex. Visit the live site: [BranFlex](https://brainflixalex.netlify.app/).
+
 This dynamic video sharing platform enables users to explore, watch, and interact with video content. It features a robust frontend built using React, showcasing capabilities like video streaming, dynamic searching, commenting, and responsive layouts.
 
 ## Features
