@@ -20,9 +20,9 @@ function VideoDetails({ video }) {
     const [views, setViews] = useState(parseNumberWithCommas(video.views));
     const [likes, setLikes] = useState(parseNumberWithCommas(video.likes));
 
-    const handleViewClick = () => {
-        setViews(prevViews => prevViews + 1);
-    };
+    // const handleViewClick = () => {
+    //     setViews(prevViews => prevViews + 1);
+    // };
 
     const handleLikeClick = () => {
         setLikes(prevLikes => prevLikes + 1);
@@ -37,7 +37,7 @@ function VideoDetails({ video }) {
                     <h4 className="hero__channel__data">{formatDate(video.timestamp)}</h4>
                 </div>
                 <div className='hero__statistic'>
-                    <button onClick={handleViewClick} className='hero__views'>
+                    <button className='hero__views'>
                         {views.toLocaleString()} views
                     </button>
                     <button onClick={handleLikeClick} className='hero__like'>

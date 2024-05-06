@@ -39,7 +39,9 @@
       display: flex;
     }
   }
-
+  &__like {
+    cursor: pointer;
+  }
   &__views,
   &__like {
     display: flex;
@@ -50,7 +52,7 @@
     border: none;
     color: $silver; 
     padding: 5px; 
-    cursor: pointer;
+
 
     @include tablet  {
       margin-right: 0; 
