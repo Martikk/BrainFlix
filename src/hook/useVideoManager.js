@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { fetchVideos, fetchVideoDetails } from '../api/api';
+import { fetchVideos  } from '../api/api';
 
 export function useVideoManager() {
     const [videos, setVideos] = useState([]);
@@ -12,7 +12,7 @@ export function useVideoManager() {
                 const videosData = await fetchVideos();
                 setVideos(videosData);
                 if (videosData.length > 0) {
-                    const detailedVideo = await fetchVideoDetails(videosData[0].id);
+                    const detailedVideo = await fetchVideos(videosData[0].id); // Adjusted function call
                     setCurrentVideo(detailedVideo);
                 }
             } catch (error) {
@@ -30,7 +30,7 @@ export function useVideoManager() {
 
     const handleSelectVideo = async (videoId) => {
         try {
-            const videoDetails = await fetchVideoDetails(videoId);
+            const videoDetails = await fetchVideos(videoId); // Adjusted function call
             setCurrentVideo(videoDetails);
             setSearchResults([]); // Clear search results after selecting a video
         } catch (error) {

@@ -5,6 +5,7 @@ import VideoDetails from './components/VideoDetails/VideoDetails';
 import Header from './components/Header/Header';
 import VideoPlayer from './components/VideoPlayer/VideoPlayer';
 import CommentsContainer from './components/CommentContainer/CommentsContainer';
+import './App.scss'
 
 function App() {
     const { videos, currentVideo, searchResults, handleSearchChange, handleSelectVideo } = useVideoManager();

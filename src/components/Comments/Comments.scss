@@ -6,6 +6,21 @@
         display: flex;
         border-bottom: 1px solid $mercury;
         padding-bottom: 15px;
+        position: relative;
+
+        &:hover .comments__button-delete {
+            display: block;
+        }
+        .comments__button-delete {
+            display: none;
+            position: absolute;
+            transform: scale(1.1);
+            right: 10px;
+            top: 10px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+        }
 
         &__content {
             flex-grow: 1;

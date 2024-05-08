@@ -2,7 +2,7 @@ import axios from 'axios';
 import { API_URL, API_KEY } from '../../api/api';
 import './CommentsForm.scss';
 import React, { useState } from 'react';
-
+import './CommentsForm.scss';
 let UserName = 'Martishyn Alex';
 
 const CommentForm = ({ onCommentPosted, videoId }) => {
