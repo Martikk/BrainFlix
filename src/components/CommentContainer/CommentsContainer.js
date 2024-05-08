@@ -43,7 +43,7 @@ const CommentsContainer = ({ videoId }) => {
             <h3 className="comments-title">
                 {comments.length > 0 ? `${comments.length} Comments` : "No comments available"}
             </h3>
-            <h4 className='comments-title'>JOIN THE CONVERSATION</h4>
+            <h4 className='comments_titles'>JOIN THE CONVERSATION</h4>
             <CommentForm onCommentPosted={fetchComments} videoId={videoId} />
             <Comments comments={comments} onDeleteComment={handleDeleteComment} />
             {error && <p className="error-message">Failed to load comments. Please try again later.</p>}
