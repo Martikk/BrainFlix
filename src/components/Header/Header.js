@@ -18,7 +18,7 @@ function Header({ onSearch, searchResults }) {
                 value={inputValue}
                 placeholder="Search"
                 onChange={handleChange}
-                onBlur={() => setInputValue('')}  
+                onBlur={() => setInputValue('')}
             />
             <div className="header__actions">
                 <button className="header__upload">Upload</button>

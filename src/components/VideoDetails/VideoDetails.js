@@ -2,50 +2,29 @@ import React, { useState } from 'react';
 import './VideoDetails.scss';
 
 
-function parseNumberWithCommas(value) {
-    return Number(value.replace(/,/g, ''));
-}
-
-export function formatDate(timestamp) {
-    const date = new Date(timestamp);
-    return date.toLocaleDateString("en-US", {
-        year: 'numeric', 
-        month: 'numeric', 
-        day: 'numeric'
-    });
-}
-
 function VideoDetails({ video }) {
-    // Parse views and likes ///numbers correctly
-    const [views, setViews] = useState(parseNumberWithCommas(video.views));
-    const [likes, setLikes] = useState(parseNumberWithCommas(video.likes));
-
-    // const handleViewClick = () => {
-    //     setViews(prevViews => prevViews + 1);
-    // };
-
-    const handleLikeClick = () => {
-        setLikes(prevLikes => prevLikes + 1);
-    };
+    if (!video) {
+        return <div>Loading...</div>;
+    }
 
     return (
-        <div className="hero__name">
-            <h1 className="hero__title">{video.title}</h1>
-            <div className="hero__stats">
-                <div className='hero__channel'>
-                    <h2 className="hero__channel__author">{video.channel}</h2>
-                    <h4 className="hero__channel__data">{formatDate(video.timestamp)}</h4>
-                </div>
-                <div className='hero__statistic'>
-                    <button className='hero__views'>
-                        {views.toLocaleString()} views
-                    </button>
-                    <button onClick={handleLikeClick} className='hero__like'>
-                        {likes.toLocaleString()} likes
-                    </button>
-                </div>
+        <div className="video-details">
+            <h1>{video.title}</h1>
+            <p>{video.description}</p>
+
+            <div className='hero__statistic'>
+                <button className='hero__views'>
+                    {video.views} views
+                </button>
+                <button  className='hero__like'>
+                    {video.likes} likes
+                </button>
             </div>
-            <p className="hero__description">{video.description}</p>
+            {video.comments && video.comments.map(comment => (
+                <div key={comment.id}>
+                    <p>{comment.name}: {comment.comment}</p>
+                </div>
+            ))}
         </div>
     );
 }

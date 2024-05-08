@@ -4,10 +4,10 @@ import './Comments.scss';
 
 function Comments({ comments }) {
     return (
-        <div className="comments">
+        <ul className="comments">
             {comments.map(comment => (
-                <div key={comment.id} className="comments__item">
-                    <div className="comments__user-icon"></div>
+                <li key={comment.id} className="comments__item">
+                    <div className="comments__user-icon"></div> {/* Consider this as a placeholder for user avatars */}
                     <div className="comments__content">
                         <div className="comments__from">
                             <h4 className="comments__author">{comment.name}</h4>
@@ -17,10 +17,13 @@ function Comments({ comments }) {
                         </div>
                         <p className="comments__text">{comment.comment}</p>
                     </div>
-                </div>
+                </li>
             ))}
-        </div>
+        </ul>
     );
 }
 
 export default Comments;
+
+
+
