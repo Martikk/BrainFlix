@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { fetchVideos, fetchVideoDetails } from './api/api'; // Adjust the path as necessary
+import React from 'react';
+import { useVideoManager } from './hook/useVideoManager';
 import VideoList from './components/VideoList/VideoList';
 import VideoDetails from './components/VideoDetails/VideoDetails';
 import Header from './components/Header/Header';
@@ -7,39 +7,7 @@ import VideoPlayer from './components/VideoPlayer/VideoPlayer';
 import CommentsContainer from './components/CommentContainer/CommentsContainer';
 
 function App() {
-    const [videos, setVideos] = useState([]);
-    const [currentVideo, setCurrentVideo] = useState(null);
-    const [searchResults, setSearchResults] = useState([]);
-
-    useEffect(() => {
-        async function loadVideos() {
-            try {
-                const videosData = await fetchVideos();
-                setVideos(videosData);
-                if (videosData.length > 0) {
-                    setCurrentVideo(videosData[0]); // Automatically select the first video
-                }
-            } catch (error) {
-                console.error('Error loading videos:', error);
-            }
-        }
-
-        loadVideos();
-    }, []);
-
-    const handleSearchChange = (searchTerm) => {
-        const results = videos.filter(video => video.title.toLowerCase().includes(searchTerm.toLowerCase()));
-        setSearchResults(results);
-    };
-
-    const handleSelectVideo = async (videoId) => {
-        try {
-            const videoDetails = await fetchVideoDetails(videoId);
-            setCurrentVideo(videoDetails);
-        } catch (error) {
-            console.error('Error fetching video details:', error);
-        }
-    };
+    const { videos, currentVideo, searchResults, handleSearchChange, handleSelectVideo } = useVideoManager();
 
     return (
         <div className="app">

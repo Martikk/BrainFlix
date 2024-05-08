@@ -10,23 +10,21 @@ function VideoDetails({ video }) {
     return (
         <div className="video-details">
             <h1>{video.title}</h1>
-            <p>{video.description}</p>
-
+            <p className="hero__channel__data">{video.channel}</p>
             <div className='hero__statistic'>
                 <button className='hero__views'>
                     {video.views} views
                 </button>
-                <button  className='hero__like'>
+                <button className='hero__like'>
                     {video.likes} likes
                 </button>
             </div>
-            {video.comments && video.comments.map(comment => (
-                <div key={comment.id}>
-                    <p>{comment.name}: {comment.comment}</p>
+            <p className="hero__description">{video.description}</p>
                 </div>
-            ))}
-        </div>
     );
 }
 
 export default VideoDetails;
+
+
+
