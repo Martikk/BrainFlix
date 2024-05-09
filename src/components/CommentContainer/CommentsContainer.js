@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Comments from '../Comments/Comments';
 import CommentForm from '../CommentForm/CommentsForm';
 import { fetchVideos, deleteComment } from '../../api/api';
@@ -7,11 +7,10 @@ const CommentsContainer = ({ videoId }) => {
     const [comments, setComments] = useState([]);
     const [error, setError] = useState(false);
 
-    // Defining fetchComments outside the useEffect so it can be reused
-    const fetchComments = async () => {
+    const fetchComments = useCallback(async () => {
         setError(false);
         try {
-            const videoDetails = await fetchVideos(videoId); // Use the unified function
+            const videoDetails = await fetchVideos(videoId);
             if (videoDetails && videoDetails.comments) {
                 setComments(videoDetails.comments.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp)));
             } else {
@@ -21,12 +20,12 @@ const CommentsContainer = ({ videoId }) => {
             console.error('Error fetching comments:', error);
             setError(true);
         }
-    };
+    }, [videoId]);  // Dependencies of fetchComments
 
     useEffect(() => {
-        console.log('Effect running to fetch comments'); // Debug log
+        console.log('Effect running to fetch comments');
         fetchComments();
-    }, [videoId]);
+    }, [fetchComments]);
 
     const handleDeleteComment = async (commentId) => {
         try {
