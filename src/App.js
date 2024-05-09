@@ -1,32 +1,20 @@
 import React from 'react';
-import { useVideoManager } from './hook/useVideoManager';
-import VideoList from './components/VideoList/VideoList';
-import VideoDetails from './components/VideoDetails/VideoDetails';
-import Header from './components/Header/Header';
-import VideoPlayer from './components/VideoPlayer/VideoPlayer';
-import CommentsContainer from './components/CommentContainer/CommentsContainer';
-import './App.scss'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from "./Pages/HomePage/HomePage";
+// import VideoPage from "./Pages/VideoPage/VideoPage";
 
 function App() {
-    const { videos, currentVideo, searchResults, handleSearchChange, handleSelectVideo } = useVideoManager();
-
     return (
-        <div className="app">
-            <Header onSearch={handleSearchChange} searchResults={searchResults} onSelectVideo={handleSelectVideo} />
-            {currentVideo && (
-                <>
-                    <VideoPlayer video={currentVideo} />
-                    <div className='after-hero-video'>
-                        <VideoDetails video={currentVideo} />
-                        <CommentsContainer videoId={currentVideo.id} />
-                        <VideoList videos={videos.filter(v => v.id !== currentVideo.id)} onSelectVideo={handleSelectVideo} />
-                    </div>
-                </>
-            )}
-        </div>
+        <BrowserRouter>
+            <div className="App">
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    {/*<Route path="/videos/:videoId" element={<VideoPage />} />*/}
+                </Routes>
+            </div>
+        </BrowserRouter>
     );
 }
-
 export default App;
 
 
