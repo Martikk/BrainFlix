@@ -12,14 +12,7 @@ function App() {
 
     return (
         <div className="app">
-            <Header onSearch={handleSearchChange} searchResults={searchResults} />
-            <div className="search-results">
-                {searchResults.map(video => (
-                    <div key={video.id} onClick={() => handleSelectVideo(video.id)} className="search-result-item">
-                        {video.title}
-                    </div>
-                ))}
-            </div>
+            <Header onSearch={handleSearchChange} searchResults={searchResults} onSelectVideo={handleSelectVideo} />
             {currentVideo && (
                 <>
                     <VideoPlayer video={currentVideo} />
@@ -35,3 +28,5 @@ function App() {
 }
 
 export default App;
+
+
