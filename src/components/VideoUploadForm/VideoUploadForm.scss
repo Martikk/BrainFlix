@@ -1,57 +1,108 @@
+@import "../../styles/mixin";
+@import "../../styles/variables";
+
 .video-upload-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background-color: #f8f9fa;
+  background-color: $white;
 
-  form {
+  &__title{
+    width: 100%;
+    border-bottom: 1px solid #E1E1E1;
+    padding-bottom: 40px;
+  }
+  &__form {
     width: 80%;
-    .thumbnail-section {
-      margin-bottom: 20px;
-      label {
-        display: block;
-        font-weight: bold;
+
+  }
+
+  &__video-title,
+  &__input-title {
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  &__video-image {
+    width: 400px;
+    height: 250px;
+    margin-bottom: 20px;
+  }
+
+  &__input-section {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  &__input,
+  &__textarea {
+    padding: 10px;
+    font-size: 16px;
+    background-color: $alabaster;
+    border-color: $mercury;
+    border-radius: 4px;
+    text-indent: 15px;
+
+    &:focus {
+      outline: none;
+      border-color: $blue;
+    }
+  }
+
+  &__input {
+    height: 40px;
+    resize: none;
+    padding: 10px;
+    font-size: 16px;
+    background-color: $alabaster;
+    border: 1px solid $mercury;
+    border-radius: 4px;
+    text-indent: 15px;
+    box-shadow: none;
+  }
+
+  &__textarea {
+    height: 100px;
+    resize: none;
+    padding: 10px;
+    font-size: 16px;
+    background-color: $alabaster;
+    border: 1px solid $mercury;
+    border-radius: 4px;
+    text-indent: 15px;
+    box-shadow: none;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+  }
+
+  &__button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: $blue;
+    color: white;
+    transition: background-color 0.3s;
+
+    &--cancel {
+      background-color: transparent;
+      color: $blue;
+
+      &:hover {
+        background-color: $alabaster;
       }
     }
-    .input-section {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
 
-      input[type="text"] {
-        padding: 10px;
-        font-size: 16px;
-      }
-
-      textarea {
-        padding: 10px;
-        font-size: 16px;
-        height: 100px;
-        resize: none;
-      }
-    }
-    .buttons {
-      display: flex;
-      justify-content: space-between;
-      margin-top: 20px;
-
-      button {
-        padding: 10px 20px;
-        font-size: 16px;
-        cursor: pointer;
-        border: none;
-        border-radius: 5px;
-        background-color: #007bff;
-        color: white;
-
-        &:first-child {
-          background-color: #dc3545;
-        }
-
-        &:hover {
-          opacity: 0.9;
-        }
+    &--publish {
+      &:hover {
+        background-color: $dark-blue;
       }
     }
   }

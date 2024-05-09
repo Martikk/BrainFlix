@@ -39,10 +39,13 @@
         background: url('../../assets/Icons/search.svg') no-repeat 10px center / 20px 20px;
         padding: 10px 10px 10px 40px; 
         margin-bottom: 20px;
-        border-color: rgba($alabaster, 0.5);
         border-radius: 4px;
         background-color: $alabaster;
         margin-right: 15%;
+        resize: none;
+        border: 1px solid $mercury;
+        text-indent: 15px;
+        box-shadow: none;
         
         @include tablet {
             width: 265px;
