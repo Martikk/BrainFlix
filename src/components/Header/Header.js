@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
 import './Header.scss';
+import { Link } from 'react-router-dom';
+import logo from '../../assets/Logo/BrainFlix-logo.svg';
+import icon from '../../assets/Images/Mohan-muruge.jpg';
 
 function Header({ onSearch, searchResults, onSelectVideo }) {
     const [inputValue, setInputValue] = useState('');
@@ -21,7 +24,9 @@ function Header({ onSearch, searchResults, onSelectVideo }) {
 
     return (
         <header className="header">
-            <div className="header__logo"></div>
+                <Link className="header__logo" to="/">
+                    <img src={logo} alt="BrainFlix Logo" />
+                </Link>
             <input
                 className={`header__search ${searchResults.length > 0 ? 'search-active' : ''}`}
                 type="search"
@@ -33,7 +38,9 @@ function Header({ onSearch, searchResults, onSelectVideo }) {
             <div className="header__actions">
                 <button className="header__upload">Upload</button>
             </div>
-            <div className="header__user-icon"></div>
+            <div className="header__user-icon">
+                <img src={icon} alt="ALex Martishyn"/>
+            </div>
             {showResults && (
                 <ul className="search-results">
                     {searchResults.map(video => (

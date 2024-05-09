@@ -1,15 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {useParams} from 'react-router-dom';
+import {fetchVideos} from '../../api/api';
+import {useVideoManager} from '../../hook/useVideoManager';
+
 import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
 import VideoDetails from '../../components/VideoDetails/VideoDetails';
 import VideoList from "../../components/VideoList/VideoList";
 import CommentsContainer from '../../components/CommentContainer/CommentsContainer';
-import { fetchVideos } from '../../api/api';
-import { useVideoManager } from '../../hook/useVideoManager';
-import  Header from '../../components/Header/Header';
+import Header from "../../components/Header/Header";
+import '../../components/VideoList/VideoList.scss';
 
 function VideoPage() {
-    const { videoId } = useParams();
+    const {videoId} = useParams();
     const [video, setVideo] = useState(null);
     const [otherVideos, setOtherVideos] = useState([]);
     const [error, setError] = useState('');
@@ -19,6 +21,7 @@ function VideoPage() {
         handleSearchChange,
         handleSelectVideo
     } = useVideoManager(); // Assuming useVideoManager provides these
+
 
     useEffect(() => {
         const loadVideoAndOthers = async () => {
@@ -42,12 +45,16 @@ function VideoPage() {
     if (!video) return <div>Loading...</div>;
 
     return (
-        <div>
-            <Header onSearch={handleSearchChange} searchResults={searchResults} onSelectVideo={handleSelectVideo} />
-            <VideoPlayer video={video} />
-            <VideoDetails video={video} />
-            <CommentsContainer videoId={videoId} />
-            <VideoList videos={otherVideos} onSelectVideo={handleSelectVideo} />
+        <div className="VideoPage">
+            <Header onSearch={handleSearchChange} searchResults={searchResults} onSelectVideo={handleSelectVideo}/>
+            <>
+                <VideoPlayer video={video}/>
+                <div className='after-hero-video'>
+                    <VideoDetails video={video}/>
+                    <CommentsContainer videoId={videoId}/>
+                    <VideoList videos={otherVideos} onSelectVideo={handleSelectVideo}/>
+                </div>
+            </>
         </div>
     );
 }
