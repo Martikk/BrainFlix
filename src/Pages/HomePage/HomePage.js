@@ -13,6 +13,7 @@ function HomePage() {
     return (
         <div className="HomePage">
             <Header/>
+            {currentVideo && (
                 <>
                     <VideoPlayer video={currentVideo} />
                     <div className='after-hero-video'>
@@ -21,7 +22,7 @@ function HomePage() {
                         <VideoList videos={videos.filter(v => v.id !== currentVideo.id)} onSelectVideo={handleSelectVideo} />
                     </div>
                 </>
-            )
+            )}
         </div>
     );
 }
