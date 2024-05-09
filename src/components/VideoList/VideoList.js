@@ -1,7 +1,14 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import './VideoList.scss';
 
-function VideoList({ videos, onSelectVideo }) {
+function VideoList({ videos }) {
+    const navigate = useNavigate();
+
+    const onSelectVideo = (videoId) => {
+        navigate(`/videos/${videoId}`);
+    };
+
     return (
         <ul className="video-list">
             <h4 className="video-list__maintitle">NEXT VIDEOS</h4>

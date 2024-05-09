@@ -1,23 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { fetchVideoById } from '../../services/videoService'; // Assuming you have a service function to fetch video data
+import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
+import VideoDetails from '../../components/VideoDetails/VideoDetails';
+import { fetchVideos } from '../../api/api';
 
 function VideoPage() {
-    const { videoId } = useParams();
-    const [video, setVideo] = React.useState(null);
+    const { videoId } = useParams();  // This should correctly retrieve the videoId from the URL
+    const [video, setVideo] = useState(null);
+    const [error, setError] = useState('');
 
-    React.useEffect(() => {
-        fetchVideoById(videoId).then(setVideo);
+    useEffect(() => {
+        const loadVideo = async () => {
+            try {
+                const data = await fetchVideos(videoId);
+                setVideo(data);
+            } catch (err) {
+                console.error('Failed to fetch video:', err);
+                setError('Failed to load video');
+            }
+        };
+
+        if (videoId) {
+            loadVideo();
+        }
     }, [videoId]);
 
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
     if (!video) {
         return <div>Loading...</div>;
     }
 
     return (
         <div>
-            <h1>{video.title}</h1>
-            {/* Render your video player or other components here */}
+            <VideoPlayer video={video} />
+            <VideoDetails video={video} />
         </div>
     );
 }
