@@ -19,7 +19,6 @@ export function useVideoManager() {
                 console.error('Error loading videos:', error);
             }
         }
-
         loadVideos();
     }, []);
 

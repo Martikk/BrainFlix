@@ -4,29 +4,28 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/Logo/BrainFlix-logo.svg';
 import icon from '../../assets/Images/Mohan-muruge.jpg';
 
-function Header({ onSearch, searchResults, onSelectVideo }) {
+function Header({ onSearch, searchResults = [], onSelectVideo }) {
     const [inputValue, setInputValue] = useState('');
-    const [showResults, setShowResults] = useState(false); // Добавлено новое состояние для управления отображением результатов
+    const [showResults, setShowResults] = useState(false);
 
     const handleChange = (event) => {
         setInputValue(event.target.value);
         onSearch(event.target.value);
-        setShowResults(true); // Показать результаты при изменении значения
+        setShowResults(true);
     };
 
     const handleBlur = () => {
-        // Задержка перед скрытием результатов, чтобы дать время на клик по элементу списка
         setTimeout(() => {
             setShowResults(false);
         }, 500);
-        setInputValue(''); // Очистка поля поиска
+        setInputValue('');
     };
 
     return (
         <header className="header">
-                <Link className="header__logo" to="/">
-                    <img src={logo} alt="BrainFlix Logo" />
-                </Link>
+            <Link className="header__logo" to="/">
+                <img src={logo} alt="BrainFlix Logo" />
+            </Link>
             <input
                 className={`header__search ${searchResults.length > 0 ? 'search-active' : ''}`}
                 type="search"
@@ -53,5 +52,6 @@ function Header({ onSearch, searchResults, onSelectVideo }) {
         </header>
     );
 }
+
 
 export default Header;
