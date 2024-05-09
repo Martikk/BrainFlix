@@ -25,6 +25,7 @@
         &:hover {
             transform: scale(1.1);
         }
+
         &::before {
             content: 'change user name';
             position: absolute;
@@ -46,13 +47,14 @@
 
         @include tablet {
             margin-right: 10%;
+            margin-left: 10px;
         }
     }
 
     textarea {
         width: 79%;
         height: 120px;
-        resize: none; 
+        resize: none;
         border-radius: 5px;
         text-indent: 15px; 
         background-color: $alabaster;

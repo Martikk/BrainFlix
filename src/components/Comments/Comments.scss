@@ -2,6 +2,7 @@
 @import "../../styles/variables";
 
 .comments {
+    padding-left: 5px;
     &__item {
         display: flex;
         border-bottom: 1px solid $mercury;
@@ -31,6 +32,7 @@
         display: flex;
         justify-content: space-between;
         padding-right: $padding-horizontal;
+        column-gap: 20px;
     }
     &__author {
         font-family:  'Avenir Next Bold';
@@ -43,16 +45,16 @@
         color: $silver;
         font-size: 0.82rem;
         font-family: 'Avenir Next Regular';
-        margin: 20px 0 0 0;
+        margin: 20px 1px 0 0;
         padding: 0;
     }
 
     &__user-icon {
-        margin-right: $margin-side;
+        margin-right: 10px;
         margin-top: $margin-side;
         position: relative;
 
-    
+
         &::after {
             content: "";
             background-color: $mercury;

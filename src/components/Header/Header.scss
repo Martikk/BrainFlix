@@ -9,57 +9,73 @@
     align-items: center;
     padding: 20px;
     background-color: $white;
+
     
     @include tablet {
         margin-right: 20%;
         flex-direction: row;
-        justify-content: flex-start;
+        //justify-content: flex-start;
         width: 95%;
     }
+    @include desktop {
+        align-items: center;
+        justify-content: flex-end;
+        position: relative;
+    }
     &__logo img {
-        height: 25px;
-        width: 120px;
+        height: 35px;
+        width: 140px;
+        padding-bottom: 20px;
+        object-fit: contain;
 
         @include tablet {
             margin: 0;
+            padding-bottom: 0px;
             margin-right: 30px;
             padding-left: 20px;
         }
 
-        @media (min-width: 1050px) {
+        @include desktop {
+            align-items: center;
+            justify-content: flex-end;
             margin: 0;
-            margin-right: 20vw;
-            padding-left: 20vw;
+            margin-right: 10vw;
+            padding-left: 10vw;
+            position: absolute;
+            margin-top: -15px;
+            left: 1%;
         }
     }
   
     &__search {
-        width: 80%;
+        width: 250px;
         height: 40px;
         background: url('../../assets/Icons/search.svg') no-repeat 10px center / 20px 20px;
-        padding: 10px 10px 10px 40px; 
+        padding: 10px 10px 10px 40px;
         margin-bottom: 20px;
         border-radius: 4px;
         background-color: $alabaster;
-        margin-right: 15%;
+        margin-right: 80px;
         resize: none;
         border: 1px solid $mercury;
         text-indent: 15px;
         box-shadow: none;
         
         @include tablet {
-            width: 265px;
+            width: 225px;
             margin-bottom: 0;
             margin: 0 10px;
-            position: unset;
             margin-left: 15%;
             margin-right: 0px;
+            position: unset;
+            margin-left: 15%;
         }
         @media (min-width: 1050px) {
             width: 265px;
             margin-bottom: 0;
             margin: 0 10px;
             position: unset;
+            margin-left: 0;
         }
     }
   
@@ -70,7 +86,7 @@
         font-size: 1rem;
         color: $white;
         padding: 10px 20px;
-        width: 370px;
+        width: 330px;
         height: 40px;
         border: none;
         border-radius: 4px;
@@ -93,15 +109,16 @@
         position: absolute;
         right: 10%;
         margin-top: -100px;
+        object-fit: cover;
 
         @include tablet{
             margin-top: 0;
             position: unset;
+
         }
         @include desktop {
             width: 42px;
             height: 42px;
-            //margin-right: 0px;
         }
     }
 }
