@@ -8,12 +8,11 @@ import CommentsContainer from '../../components/CommentContainer/CommentsContain
 import './HomePage.scss'
 
 function HomePage() {
-    const { videos, currentVideo, searchResults, handleSearchChange, handleSelectVideo } = useVideoManager();
+    const { videos, currentVideo, handleSelectVideo } = useVideoManager();
 
     return (
         <div className="HomePage">
-            <Header onSearch={handleSearchChange} searchResults={searchResults} onSelectVideo={handleSelectVideo} />
-            {currentVideo && (
+            <Header/>
                 <>
                     <VideoPlayer video={currentVideo} />
                     <div className='after-hero-video'>
@@ -22,7 +21,7 @@ function HomePage() {
                         <VideoList videos={videos.filter(v => v.id !== currentVideo.id)} onSelectVideo={handleSelectVideo} />
                     </div>
                 </>
-            )}
+            )
         </div>
     );
 }

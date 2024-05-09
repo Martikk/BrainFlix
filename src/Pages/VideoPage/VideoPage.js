@@ -1,27 +1,21 @@
-import React, {useEffect, useState} from 'react';
-import {useParams} from 'react-router-dom';
-import {fetchVideos} from '../../api/api';
-import {useVideoManager} from '../../hook/useVideoManager';
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { fetchVideos } from '../../api/api';
+import { useVideoManager } from '../../hook/useVideoManager';
 
 import VideoPlayer from '../../components/VideoPlayer/VideoPlayer';
 import VideoDetails from '../../components/VideoDetails/VideoDetails';
-import VideoList from "../../components/VideoList/VideoList";
+import VideoList from '../../components/VideoList/VideoList';
 import CommentsContainer from '../../components/CommentContainer/CommentsContainer';
-import Header from "../../components/Header/Header";
+import Header from '../../components/Header/Header';
 import '../../components/VideoList/VideoList.scss';
 
 function VideoPage() {
-    const {videoId} = useParams();
+    const { videoId } = useParams();
     const [video, setVideo] = useState(null);
     const [otherVideos, setOtherVideos] = useState([]);
     const [error, setError] = useState('');
-    const {
-        videos,
-        searchResults,
-        handleSearchChange,
-        handleSelectVideo
-    } = useVideoManager(); // Assuming useVideoManager provides these
-
+    const { handleSelectVideo } = useVideoManager(); // Removed unused variables
 
     useEffect(() => {
         const loadVideoAndOthers = async () => {
@@ -32,7 +26,7 @@ function VideoPage() {
                 setOtherVideos(allVideos.filter(v => v.id !== videoId)); // Filter out the current video from the list
             } catch (err) {
                 console.error('Failed to fetch video:', err);
-                setError('Failed to load video');
+                setError(`Failed to load video: ${err.message}`); // Improved error message
             }
         };
 
@@ -46,13 +40,13 @@ function VideoPage() {
 
     return (
         <div className="VideoPage">
-            <Header/>
+            <Header />
             <>
-                <VideoPlayer video={video}/>
+                <VideoPlayer video={video} />
                 <div className='after-hero-video'>
-                    <VideoDetails video={video}/>
-                    <CommentsContainer videoId={videoId}/>
-                    <VideoList videos={otherVideos} onSelectVideo={handleSelectVideo}/>
+                    <VideoDetails video={video} />
+                    <CommentsContainer videoId={videoId} />
+                    <VideoList videos={otherVideos} onSelectVideo={handleSelectVideo} />
                 </div>
             </>
         </div>
@@ -60,4 +54,3 @@ function VideoPage() {
 }
 
 export default VideoPage;
-
