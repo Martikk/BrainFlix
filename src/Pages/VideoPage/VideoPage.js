@@ -46,7 +46,7 @@ function VideoPage() {
 
     return (
         <div className="VideoPage">
-            <Header onSearch={handleSearchChange} searchResults={searchResults} onSelectVideo={handleSelectVideo}/>
+            <Header/>
             <>
                 <VideoPlayer video={video}/>
                 <div className='after-hero-video'>
