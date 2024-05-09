@@ -15,7 +15,7 @@ function Header({ onSearch, searchResults, onSelectVideo }) {
         // Задержка перед скрытием результатов, чтобы дать время на клик по элементу списка
         setTimeout(() => {
             setShowResults(false);
-        }, 100);
+        }, 500);
         setInputValue(''); // Очистка поля поиска
     };
 
