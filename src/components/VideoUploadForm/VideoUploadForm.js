@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './VideoUploadForm.scss';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import PopUpModal from '../PopUpModal/PopUpModal';
 import runner from '../../assets/Images/Upload-video-preview.jpg';
 import successBackground from '../../assets/Images/loading.gif';
 
 function VideoUploadForm() {
     const [videoTitle, setVideoTitle] = useState('');
     const [videoDescription, setVideoDescription] = useState('');
-    const [file, setFile] = useState(null);
+    const [setFile] = useState(null);
+    // const [file, setFile] = useState(null);
     const [submitSuccess, setSubmitSuccess] = useState(false);
     const [cancelSuccess, setCancelSuccess] = useState(false);
+    const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
 
     const handleFileChange = (event) => {
@@ -23,47 +28,84 @@ function VideoUploadForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         if (!videoTitle.trim() || !videoDescription.trim()) {
-            alert('Please fill in all fields.');
+            toast.error('Please fill in all fields.', {
+                position: "top-center",
+                autoClose: 2000
+            });
             return;
         }
         console.log('Video Title:', videoTitle);
         console.log('Video Description:', videoDescription);
         setSubmitSuccess(true);
+        toast.success('Upload successful!', {
+            position: "top-center",
+            autoClose: 2000
+        });
         setTimeout(() => {
             navigate('/');
-        }, 1000);
+        }, 2000);
     };
 
     const handleCancel = () => {
-        if (window.confirm('Are you sure you want to cancel?')) {
-            setCancelSuccess(true);
-            setTimeout(() => {
-                setVideoTitle('');
-                setVideoDescription('');
-                setFile(null);
-                navigate('/');
-            }, 1000);
-        }
+        setShowModal(true);
     };
 
-    if (submitSuccess) {
-        return (
-            <div style={{ width: '100%', height: '100%', backgroundColor: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img src={successBackground} alt="Loading" />
-            </div>
-        );
-    }
+    const closeCancelModal = () => {
+        setShowModal(false);
+    };
 
-    if (cancelSuccess) {
+    const confirmCancel = () => {
+        setCancelSuccess(true);
+        toast.error('Upload cancelled.', {
+            position: "top-center",
+            autoClose: 2000
+        });
+        setTimeout(() => {
+            setVideoTitle('');
+            setVideoDescription('');
+            setFile(null);
+            navigate('/');
+        }, 2000);
+        setShowModal(false);
+    };
+
+    if (submitSuccess || cancelSuccess) {
         return (
             <div style={{ width: '100%', height: '100%', backgroundColor: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
-                <img src={successBackground} alt="Canceling" />
+                <ToastContainer
+                    position="top-center"
+                    autoClose={2000}
+                    hideProgressBar={false}
+                    newestOnTop={true}
+                    closeOnClick
+                    rtl={false}
+                    pauseOnFocusLoss={false}
+                    draggable
+                    pauseOnHover={false}
+                    theme="light"
+                />
+                <img src={successBackground} alt={submitSuccess ? "Loading" : "Canceling"} />
             </div>
         );
     }
 
     return (
         <div className="video-upload-form">
+            <ToastContainer
+                position="top-center"
+                autoClose={2000}
+                hideProgressBar={false}
+                newestOnTop={true}
+                closeOnClick
+                rtl={false}
+                pauseOnFocusLoss={false}
+                draggable
+                pauseOnHover={false}
+                theme="light"
+            />
+            <PopUpModal isOpen={showModal} onClose={closeCancelModal} onConfirm={confirmCancel}>
+                Are you sure you want to cancel the upload?
+            </PopUpModal>
             <h1 className="video-upload-form__title">Upload Video</h1>
             <div className="video-upload-form__separator_2"></div>
             <form className="video-upload-form__form" onSubmit={handleSubmit}>
