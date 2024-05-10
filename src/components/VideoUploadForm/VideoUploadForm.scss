@@ -5,29 +5,88 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
   background-color: $white;
+  padding-left: 20px;
+  padding-right: 20px;
+
+&__separator_2, {
+    @include tablet {
+      width: 95%;
+      border-top: 1px solid #E1E1E1;
+      height: 1px;
+      padding-bottom: 20px;
+    }
+  }
+  &__separator_3 {
+    @include desktop {
+      width: 99%;
+      border-top: 1px solid #E1E1E1;
+      height: 1px;
+      margin-top: 30px;
+    }
+  }
+  @include tablet {
+    align-items: flex-start;
+    padding-left: 45px;
+  }
+  @include tablet {
+    padding-left: 10vw;
+    padding-right: 10vw;
+  }
 
   &__title{
-    width: 100%;
-    border-bottom: 1px solid #E1E1E1;
-    padding-bottom: 40px;
+    margin: 0;
+    padding: 20px 30% 20px 0;
+    font-family:  'Avenir Next Bold';
+    font-size: 2rem;
+
+    @include tablet {
+      margin: 20px 0;
+      padding:0;
+    }
   }
+
   &__form {
-    width: 80%;
-
+    width: 95%;
+    @include desktop {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+  }
+  &__form__input-container {
+    @include desktop {
+      width: 30%;
+    }
+  }
+  &__input-section {
+    @include desktop {
+      width: 64%;
+      padding-left: 50px;
+    }
   }
 
+  &__textarea-title,
   &__video-title,
   &__input-title {
-    margin-bottom: 10px;
+    color: $silver;
+    font-family: 'Avenir Next Demi';
+    font-size: 1rem;
+    margin: 0;
     font-weight: bold;
   }
-
+  &__textarea-title {
+    padding-top: 10px;
+  }
   &__video-image {
-    width: 400px;
-    height: 250px;
-    margin-bottom: 20px;
+    width: 320px;
+    height: 200px;
+    padding: 10px 0;
+    cursor: pointer;
+    transition: filter 0.5s ease;
+  }
+  &__video-image:hover {
+    filter: brightness(60%);
   }
 
   &__input-section {
@@ -54,7 +113,7 @@
   &__input {
     height: 40px;
     resize: none;
-    padding: 10px;
+    padding: 0;
     font-size: 16px;
     background-color: $alabaster;
     border: 1px solid $mercury;
@@ -79,6 +138,13 @@
     display: flex;
     justify-content: space-between;
     margin-top: 20px;
+    flex-direction: column-reverse;
+    @include tablet {
+      display: flex;
+      flex-direction: row;
+      gap: 50px;
+      justify-content: flex-end;
+    }
   }
 
   &__button {
@@ -90,20 +156,39 @@
     background-color: $blue;
     color: white;
     transition: background-color 0.3s;
+    font-family: 'Avenir Next Demi';
 
     &--cancel {
       background-color: transparent;
       color: $blue;
 
       &:hover {
-        background-color: $alabaster;
+        color: red;
+      }
+      @include tablet {
+        margin-bottom: 20px;
       }
     }
 
     &--publish {
+      height: 60px;
+      background: url('../../assets/Icons/upload.svg') no-repeat 10px center / 30px 30px;
+      background-color: $blue;
+      border-radius: 5px;
+      border: none;
+      color: $white;
+      transition: transform 0.3s ease;
+      margin-bottom: 20px;
+      @include tablet {
+        width: 160px;
+        height: 40px;
+      }
       &:hover {
+        transform: scale(1.1);
         background-color: $dark-blue;
       }
     }
   }
 }
+
+
