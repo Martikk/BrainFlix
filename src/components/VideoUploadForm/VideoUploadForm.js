@@ -7,8 +7,18 @@ import successBackground from '../../assets/Images/loading.gif';
 function VideoUploadForm() {
     const [videoTitle, setVideoTitle] = useState('');
     const [videoDescription, setVideoDescription] = useState('');
+    const [file, setFile] = useState(null);
     const [submitSuccess, setSubmitSuccess] = useState(false);
+    const [cancelSuccess, setCancelSuccess] = useState(false);
     const navigate = useNavigate();
+
+    const handleFileChange = (event) => {
+        setFile(event.target.files[0]);
+    };
+
+    const triggerFileInput = () => {
+        document.getElementById('fileInput').click();
+    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,12 +31,19 @@ function VideoUploadForm() {
         setSubmitSuccess(true);
         setTimeout(() => {
             navigate('/');
-        }, 3000);
+        }, 1000);
     };
 
     const handleCancel = () => {
-        setVideoTitle('');
-        setVideoDescription('');
+        if (window.confirm('Are you sure you want to cancel?')) {
+            setCancelSuccess(true);
+            setTimeout(() => {
+                setVideoTitle('');
+                setVideoDescription('');
+                setFile(null);
+                navigate('/');
+            }, 1000);
+        }
     };
 
     if (submitSuccess) {
@@ -37,13 +54,34 @@ function VideoUploadForm() {
         );
     }
 
+    if (cancelSuccess) {
+        return (
+            <div style={{ width: '100%', height: '100%', backgroundColor: 'white', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                <img src={successBackground} alt="Canceling" />
+            </div>
+        );
+    }
+
     return (
         <div className="video-upload-form">
             <h1 className="video-upload-form__title">Upload Video</h1>
+            <div className="video-upload-form__separator_2"></div>
             <form className="video-upload-form__form" onSubmit={handleSubmit}>
-                <p className="video-upload-form__video-title">VIDEO THUMBNAIL</p>
-                <img className="video-upload-form__video-image" src={runner} alt="runner" />
-
+                <div className="video-upload-form__form__input-container">
+                    <p className="video-upload-form__video-title">VIDEO THUMBNAIL</p>
+                    <img
+                        className="video-upload-form__video-image"
+                        src={runner}
+                        alt="Upload Thumbnail"
+                        onClick={triggerFileInput}
+                    />
+                    <input
+                        id="fileInput"
+                        type="file"
+                        onChange={handleFileChange}
+                        style={{display: 'none'}}
+                    />
+                </div>
                 <div className="video-upload-form__input-section">
                     <p className="video-upload-form__input-title">TITLE YOUR VIDEO</p>
                     <input
@@ -53,6 +91,7 @@ function VideoUploadForm() {
                         value={videoTitle}
                         onChange={(e) => setVideoTitle(e.target.value)}
                     />
+                    <p className="video-upload-form__textarea-title">ADD A VIDEO DESCRIPTION</p>
                     <textarea
                         className="video-upload-form__textarea"
                         placeholder="Add a description to your video"
@@ -60,7 +99,7 @@ function VideoUploadForm() {
                         onChange={(e) => setVideoDescription(e.target.value)}
                     ></textarea>
                 </div>
-
+                <div className="video-upload-form__separator_3"></div>
                 <div className="video-upload-form__buttons">
                     <button
                         className="video-upload-form__button video-upload-form__button--cancel"
