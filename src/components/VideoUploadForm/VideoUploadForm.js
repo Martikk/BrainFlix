@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './VideoUploadForm.scss';
 import { ToastContainer, toast } from 'react-toastify';
@@ -11,11 +11,20 @@ function VideoUploadForm() {
     const [videoTitle, setVideoTitle] = useState('');
     const [videoDescription, setVideoDescription] = useState('');
     const [setFile] = useState(null);
-    // const [file, setFile] = useState(null);
+    // const [file, setFile] = useState(null)
     const [submitSuccess, setSubmitSuccess] = useState(false);
     const [cancelSuccess, setCancelSuccess] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if (submitSuccess || cancelSuccess) {
+            const timer = setTimeout(() => {
+                navigate('/');
+            }, 2000);
+            return () => clearTimeout(timer);
+        }
+    }, [submitSuccess, cancelSuccess, navigate]);
 
     const handleFileChange = (event) => {
         setFile(event.target.files[0]);
@@ -41,9 +50,6 @@ function VideoUploadForm() {
             position: "top-center",
             autoClose: 2000
         });
-        setTimeout(() => {
-            navigate('/');
-        }, 2000);
     };
 
     const handleCancel = () => {
@@ -64,9 +70,8 @@ function VideoUploadForm() {
             setVideoTitle('');
             setVideoDescription('');
             setFile(null);
-            navigate('/');
+            setShowModal(false);
         }, 2000);
-        setShowModal(false);
     };
 
     if (submitSuccess || cancelSuccess) {
@@ -121,7 +126,7 @@ function VideoUploadForm() {
                         id="fileInput"
                         type="file"
                         onChange={handleFileChange}
-                        style={{display: 'none'}}
+                        style={{ display: 'none' }}
                     />
                 </div>
                 <div className="video-upload-form__input-section">
