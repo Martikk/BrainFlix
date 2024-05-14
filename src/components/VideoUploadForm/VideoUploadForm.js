@@ -163,7 +163,7 @@ function VideoUploadForm() {
                     ></textarea>
                 </div>
                 <div className="video-upload-form__separator_3"></div>
-                <div className="video-upload-form__buttons">
+                <div className="video-upload-form__buttons">ç
                     <button
                         className="video-upload-form__button video-upload-form__button--cancel"
                         type="button"
