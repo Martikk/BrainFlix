@@ -174,10 +174,10 @@
       border: none;
       color: $white;
       transition: transform 0.3s ease;
-      margin-bottom: 20px;
       @include tablet {
         width: 160px;
         height: 40px;
+        padding-left: 40px;
       }
       &:hover {
         transform: scale(1.1);
@@ -194,13 +194,22 @@
     width: 320px;
     height: 190px;
     padding: 10px;
-    margin: 10px -5px;
+    margin: 10px 0px;
     border: 2px dashed $blue;
     border-radius: 5px;
     background-color: $alabaster;
     cursor: pointer;
     transition: border-color 0.3s ease;
     position: relative;
+
+    @media (min-width:1285px) {
+      width: 280px;
+      height: 190px;
+  }
+  @media (min-width:1395px) {
+    width: 320px;
+    height: 190px;
+}
 
     &:hover {
       border-color: $dark-blue;
