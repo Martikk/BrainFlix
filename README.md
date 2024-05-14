@@ -1,4 +1,4 @@
-# Sprint 2: Video Sharing Platform Enhancement
+# BranFlex Video Sharing Platform Enhancement
 
 ## Project Overview
 
@@ -14,7 +14,7 @@ Continuing the development of BranFlex, this sprint introduces significant enhan
 
 ### User Interaction
 - **User Change Functionality**: Implemented a feature allowing users to change their username dynamically throughout the session for personalized comments.
-- **Search Component**: Extracted search functionality into a dedicated component to streamline codebase and enhance performance.
+- **Search Component**: Extracted search functionality into a dedicated component to streamline the codebase and enhance performance.
 
 ### Video Upload and Animation
 - **Video Upload Page**: Added a new page for users to upload videos, enriching the content diversity of the platform.
@@ -29,16 +29,26 @@ Continuing the development of BranFlex, this sprint introduces significant enhan
 ## Development Approach
 
 ### Revised Component Structure
-- **Search**: Now standalone component managing all search functionalities.
+- **Search**: Now a standalone component managing all search functionalities.
 - **CommentsContainer**: Enhanced to handle API-driven comment posting and deletions with added security measures.
 - **UploadPage**: New component managing video uploads with user feedback through animations.
 
 ### Improved State and Data Management
 - Shifted from static file reading to API calls using hooks like `useState` and `useEffect` for managing application state and effects based on user actions and API responses.
 
-## Updated Code Highlights
+## Getting Started
 
-### Enhanced Search Functionality and Secure Comment Management
+To run the project, ensure you have the Express server running locally. Follow these steps:
+
+1. Clone the repository.
+2. Install dependencies for both the frontend and backend:
+   ```bash
+   npm install
+   npm run server
+   npm start
+
+## Enhanced Search Functionality and Secure Comment Management
+
 ```javascript
 const handleSearchChange = (term) => {
   if (term.trim()) {
@@ -61,4 +71,50 @@ const handleDeleteComment = async (videoId, commentId, password) => {
   }
 };
 
+```
+## Uploading Videos with User Feedback Animation
+
+```javascript
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (!videoTitle.trim() || !videoDescription.trim() || !file) {
+    toast.error('Please fill in all fields and upload an image.', {
+      position: "top-center",
+      autoClose: 2000
+    });
+    return;
+  }
+
+  const formData = new FormData();
+  formData.append('title', videoTitle);
+  formData.append('description', videoDescription);
+  formData.append('channel', userName); 
+  formData.append('image', file);
+
+  try {
+    await uploadVideo(formData);
+    setSubmitSuccess(true);
+    toast.success('Upload successful!', {
+      position: "top-center",
+      autoClose: 2000
+    });
+  } catch (error) {
+    toast.error('Failed to upload video.', {
+      position: "top-center",
+      autoClose: 2000
+    });
+  }
+};
+```
+
+## Dynamic Username Change Functionality
+
+```javascript
+const handleUserNameChange = () => {
+  const newUserName = window.prompt('Please enter your name:', userName);
+  if (newUserName) {
+    setUserName(newUserName);
+  }
+};
+```
 
