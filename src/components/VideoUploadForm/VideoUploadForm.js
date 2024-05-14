@@ -1,12 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useContext } from 'react';
+import { useDropzone } from 'react-dropzone';
 import { useNavigate } from 'react-router-dom';
 import './VideoUploadForm.scss';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PopUpModal from '../PopUpModal/PopUpModal';
-import runner from '../../assets/Images/Upload-video-preview.jpg';
 import successBackground from '../../assets/Images/loading.gif';
 import { uploadVideo } from '../../api/api';
+import { UserContext } from '../../context/UserContext';
 
 function VideoUploadForm() {
     const [videoTitle, setVideoTitle] = useState('');
@@ -16,6 +17,7 @@ function VideoUploadForm() {
     const [cancelSuccess, setCancelSuccess] = useState(false);
     const [showModal, setShowModal] = useState(false);
     const navigate = useNavigate();
+    const { userName } = useContext(UserContext);
 
     useEffect(() => {
         if (submitSuccess || cancelSuccess) {
@@ -26,13 +28,15 @@ function VideoUploadForm() {
         }
     }, [submitSuccess, cancelSuccess, navigate]);
 
-    const handleFileChange = (event) => {
-        setFile(event.target.files[0]);
-    };
+    const onDrop = useCallback((acceptedFiles) => {
+        setFile(acceptedFiles[0]);
+    }, []);
 
-    const triggerFileInput = () => {
-        document.getElementById('fileInput').click();
-    };
+    const { getRootProps, getInputProps, isDragActive } = useDropzone({
+        onDrop,
+        accept: 'image/*',
+        maxFiles: 1
+    });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -47,6 +51,7 @@ function VideoUploadForm() {
         const formData = new FormData();
         formData.append('title', videoTitle);
         formData.append('description', videoDescription);
+        formData.append('channel', userName);  // Include username as the channel name
         formData.append('image', file);
 
         try {
@@ -127,20 +132,18 @@ function VideoUploadForm() {
             <div className="video-upload-form__separator_2"></div>
             <form className="video-upload-form__form" onSubmit={handleSubmit}>
                 <div className="video-upload-form__form__input-container">
-                    <p className="video-upload-form__video-title">VIDEO THUMBNAIL</p>
-                    <img
-                        className="video-upload-form__video-image"
-                        src={file ? URL.createObjectURL(file) : runner}
-                        alt="Upload Thumbnail"
-                        onClick={triggerFileInput}
-                    />
-                    <input
-                        id="fileInput"
-                        type="file"
-                        accept="image/*"
-                        onChange={handleFileChange}
-                        style={{ display: 'none' }}
-                    />
+                    <p className="video-upload-form__video-title">Upload File</p>
+                    <div
+                        {...getRootProps({ className: 'video-upload-form__dropzone' })}
+                    >
+                        <input {...getInputProps()} />
+                        {
+                            isDragActive ?
+                                <p>Drop the files here ...</p> :
+                                <p>Drag 'n' drop some files here, or click to select files</p>
+                        }
+                        {file && <img className="video-upload-form__dropzone__image" src={URL.createObjectURL(file)} alt="Upload Thumbnail" />}
+                    </div>
                 </div>
                 <div className="video-upload-form__input-section">
                     <p className="video-upload-form__input-title">TITLE YOUR VIDEO</p>

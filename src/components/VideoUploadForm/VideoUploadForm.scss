@@ -9,7 +9,7 @@
   padding-left: 20px;
   padding-right: 20px;
 
-&__separator_2, {
+  &__separator_2, {
     @include tablet {
       width: 95%;
       border-top: 1px solid #E1E1E1;
@@ -17,6 +17,7 @@
       padding-bottom: 20px;
     }
   }
+  
   &__separator_3 {
     @include desktop {
       width: 99%;
@@ -25,24 +26,26 @@
       margin-top: 30px;
     }
   }
+  
   @include tablet {
     align-items: flex-start;
     padding-left: 45px;
   }
+  
   @include tablet {
     padding-left: 10vw;
     padding-right: 10vw;
   }
 
-  &__title{
+  &__title {
     margin: 0;
     padding: 20px 30% 20px 0;
-    font-family:  'Avenir Next Bold';
+    font-family: 'Avenir Next Bold';
     font-size: 2rem;
 
     @include tablet {
       margin: 20px 0;
-      padding:0;
+      padding: 0;
     }
   }
 
@@ -54,11 +57,13 @@
       justify-content: flex-end;
     }
   }
+
   &__form__input-container {
     @include desktop {
       width: 30%;
     }
   }
+
   &__input-section {
     @include desktop {
       width: 64%;
@@ -75,18 +80,9 @@
     margin: 0;
     font-weight: bold;
   }
+
   &__textarea-title {
     padding-top: 10px;
-  }
-  &__video-image {
-    width: 320px;
-    height: 200px;
-    padding: 10px 0;
-    cursor: pointer;
-    transition: filter 0.5s ease;
-  }
-  &__video-image:hover {
-    filter: brightness(60%);
   }
 
   &__input-section {
@@ -189,6 +185,37 @@
       }
     }
   }
+
+  &__dropzone {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 320px;
+    height: 190px;
+    padding: 10px;
+    margin: 10px -5px;
+    border: 2px dashed $blue;
+    border-radius: 5px;
+    background-color: $alabaster;
+    cursor: pointer;
+    transition: border-color 0.3s ease;
+    position: relative;
+
+    &:hover {
+      border-color: $dark-blue;
+    }
+
+    p {
+      font-size: 16px;
+      color: $silver;
+    }
+
+    &__image {
+      max-width: 50%;
+      max-height: 50%;
+      object-fit: cover;
+      border-radius: 5px;
+    }
+  }
 }
-
-

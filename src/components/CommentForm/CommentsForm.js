@@ -1,26 +1,25 @@
+import React, { useState, useContext } from 'react';
 import axios from 'axios';
 import { API_URL, API_KEY } from '../../api/api';
 import './CommentsForm.scss';
-import React, { useState } from 'react';
-import './CommentsForm.scss';
-let UserName = 'Martishyn Alex';
+import { UserContext } from '../../context/UserContext';
 
 const CommentForm = ({ onCommentPosted, videoId }) => {
     const [comment, setComment] = useState('');
+    const { userName, setUserName } = useContext(UserContext);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        // сheck//
         if (!comment.trim()) {
             alert('Please enter a comment before submitting.');
             return;
         }
-        const payload = { name: UserName, comment };
-        console.log('Submitting comment:', payload); // Debug log
+        const payload = { name: userName, comment };
+        console.log('Submitting comment:', payload);
 
         try {
             const response = await axios.post(`${API_URL}/videos/${videoId}/comments/?api_key=${API_KEY}`, payload);
-            console.log('Comment posted successfully:', response.data); // Debug log
+            console.log('Comment posted successfully:', response.data);
             setComment('');
             if (onCommentPosted) {
                 onCommentPosted();
@@ -29,10 +28,11 @@ const CommentForm = ({ onCommentPosted, videoId }) => {
             console.error('Failed to post comment:', error);
         }
     };
+
     const handleUserNameChange = () => {
-        const newUserName = window.prompt('Please enter your name:', UserName);
+        const newUserName = window.prompt('Please enter your name:', userName);
         if (newUserName) {
-            UserName = newUserName;
+            setUserName(newUserName);
         }
     };
 
@@ -49,6 +49,5 @@ const CommentForm = ({ onCommentPosted, videoId }) => {
         </form>
     );
 };
-
 
 export default CommentForm;

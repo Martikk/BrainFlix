@@ -1,17 +1,26 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './Header.scss';
 import { Link, useNavigate } from 'react-router-dom';
 import logo from '../../assets/Logo/BrainFlix-logo.svg';
 import icon from '../../assets/Images/Mohan-muruge.jpg';
-import Search from '../Search/Search'; // Import the Search component
+import Search from '../Search/Search';
+import { UserContext } from '../../context/UserContext';
 
 function Header({ onSearch, searchResults, onSelectVideo }) {
-    const navigate = useNavigate(); // Create the navigate function
+    const navigate = useNavigate();
+    const { userName, setUserName } = useContext(UserContext);
 
-    // Function to handle click event on Upload button
     const handleUploadClick = () => {
-        navigate('/UploadVideo'); // Navigate to the UploadVideo page
+        navigate('/UploadVideo');
     };
+
+    const handleUserNameChange = () => {
+        const newUserName = window.prompt('Please enter your name:', userName);
+        if (newUserName) {
+            setUserName(newUserName);
+        }
+    };
+
     return (
         <header className="header">
             <Link className="header__logo" to="/">
@@ -21,12 +30,11 @@ function Header({ onSearch, searchResults, onSelectVideo }) {
             <div className="header__actions">
                 <button className="header__upload" onClick={handleUploadClick}>Upload</button>
             </div>
-            <div className="header__user-icon">
-            <img src={icon} alt="ALex Martishyn"/>
+            <div className="header__user-icon" onClick={handleUserNameChange}>
+                <img src={icon} alt="User Icon" />
             </div>
         </header>
-);
+    );
 }
-
 
 export default Header;
