@@ -34,14 +34,14 @@ function VideoUploadForm() {
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,
-        accept: 'image/*',
+        accept: 'video/*',
         maxFiles: 1
     });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!videoTitle.trim() || !videoDescription.trim() || !file) {
-            toast.error('Please fill in all fields and upload an image.', {
+            toast.error('Please fill in all fields and upload a video.', {
                 position: "top-center",
                 autoClose: 2000
             });
@@ -52,7 +52,7 @@ function VideoUploadForm() {
         formData.append('title', videoTitle);
         formData.append('description', videoDescription);
         formData.append('channel', userName);  // Include username as the channel name
-        formData.append('image', file);
+        formData.append('video', file);
 
         try {
             await uploadVideo(formData);
@@ -142,7 +142,7 @@ function VideoUploadForm() {
                                 <p>Drop the files here ...</p> :
                                 <p>Drag 'n' drop some files here, or click to select files</p>
                         }
-                        {file && <img className="video-upload-form__dropzone__image" src={URL.createObjectURL(file)} alt="Upload Thumbnail" />}
+                        {file && <video className="video-upload-form__dropzone__video" src={URL.createObjectURL(file)} controls />}
                     </div>
                 </div>
                 <div className="video-upload-form__input-section">
