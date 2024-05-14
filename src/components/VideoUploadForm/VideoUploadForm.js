@@ -34,14 +34,14 @@ function VideoUploadForm() {
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,
-        accept: 'video/*',
+        accept: 'image/*',
         maxFiles: 1
     });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!videoTitle.trim() || !videoDescription.trim() || !file) {
-            toast.error('Please fill in all fields and upload a video.', {
+            toast.error('Please fill in all fields and upload an image.', {
                 position: "top-center",
                 autoClose: 2000
             });
@@ -52,7 +52,7 @@ function VideoUploadForm() {
         formData.append('title', videoTitle);
         formData.append('description', videoDescription);
         formData.append('channel', userName);  // Include username as the channel name
-        formData.append('video', file);
+        formData.append('image', file);
 
         try {
             await uploadVideo(formData);
@@ -142,7 +142,7 @@ function VideoUploadForm() {
                                 <p>Drop the files here ...</p> :
                                 <p>Drag 'n' drop some files here, or click to select files</p>
                         }
-                        {file && <video className="video-upload-form__dropzone__video" src={URL.createObjectURL(file)} controls />}
+                        {file && <img className="video-upload-form__dropzone__image" src={URL.createObjectURL(file)} alt="Upload Thumbnail" />}
                     </div>
                 </div>
                 <div className="video-upload-form__input-section">
@@ -163,7 +163,7 @@ function VideoUploadForm() {
                     ></textarea>
                 </div>
                 <div className="video-upload-form__separator_3"></div>
-                <div className="video-upload-form__buttons">ç
+                <div className="video-upload-form__buttons">
                     <button
                         className="video-upload-form__button video-upload-form__button--cancel"
                         type="button"
