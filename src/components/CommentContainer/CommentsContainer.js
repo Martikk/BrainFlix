@@ -20,7 +20,7 @@ const CommentsContainer = ({ videoId }) => {
             console.error('Error fetching comments:', error);
             setError(true);
         }
-    }, [videoId]);  // Dependencies of fetchComments
+    }, [videoId]); 
 
     useEffect(() => {
         console.log('Effect running to fetch comments');
@@ -30,7 +30,7 @@ const CommentsContainer = ({ videoId }) => {
     const handleDeleteComment = async (commentId) => {
         try {
             await deleteComment(videoId, commentId);
-            fetchComments(); // Fetch comments again to refresh the list after deletion
+            fetchComments(); 
         } catch (error) {
             console.error('Error deleting comment:', error);
             setError(true);

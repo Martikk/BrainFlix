@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import './VideoDetails.scss';
+import { likeVideo } from '../../api/api';  
+import './VideoDetails.scss';  
 
 export function formatDate(timestamp) {
     const date = new Date(timestamp);
@@ -9,12 +10,18 @@ export function formatDate(timestamp) {
         day: 'numeric'
     });
 }
+
 function parseNumberWithCommas(value) {
-    return Number(value.replace(/,/g, ''));
+    if (typeof value === 'string') {
+        return Number(value.replace(/,/g, ''));
+    } else if (typeof value === 'number') {
+        return value;
+    } else {
+        return 0;  
+    }
 }
 
 function VideoDetails({ video }) {
-
     const [likes, setLikes] = useState(parseNumberWithCommas(video.likes));
 
     useEffect(() => {
@@ -25,9 +32,13 @@ function VideoDetails({ video }) {
         return <div>Loading...</div>;
     }
 
-    // Функция для увеличения лайков
-    function handleLike() {
-        setLikes(prevLikes => prevLikes + 1);
+    async function handleLike() {
+        try {
+            const updatedVideo = await likeVideo(video.id);
+            setLikes(parseNumberWithCommas(updatedVideo.likes));
+        } catch (error) {
+            console.error('Failed to update likes:', error);
+        }
     }
 
     return (

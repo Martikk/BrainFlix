@@ -6,12 +6,12 @@ import 'react-toastify/dist/ReactToastify.css';
 import PopUpModal from '../PopUpModal/PopUpModal';
 import runner from '../../assets/Images/Upload-video-preview.jpg';
 import successBackground from '../../assets/Images/loading.gif';
+import { uploadVideo } from '../../api/api';
 
 function VideoUploadForm() {
     const [videoTitle, setVideoTitle] = useState('');
     const [videoDescription, setVideoDescription] = useState('');
-    const [setFile] = useState(null);
-    // const [file, setFile] = useState(null)
+    const [file, setFile] = useState(null);
     const [submitSuccess, setSubmitSuccess] = useState(false);
     const [cancelSuccess, setCancelSuccess] = useState(false);
     const [showModal, setShowModal] = useState(false);
@@ -34,22 +34,34 @@ function VideoUploadForm() {
         document.getElementById('fileInput').click();
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        if (!videoTitle.trim() || !videoDescription.trim()) {
-            toast.error('Please fill in all fields.', {
+        if (!videoTitle.trim() || !videoDescription.trim() || !file) {
+            toast.error('Please fill in all fields and upload an image.', {
                 position: "top-center",
                 autoClose: 2000
             });
             return;
         }
-        console.log('Video Title:', videoTitle);
-        console.log('Video Description:', videoDescription);
-        setSubmitSuccess(true);
-        toast.success('Upload successful!', {
-            position: "top-center",
-            autoClose: 2000
-        });
+
+        const formData = new FormData();
+        formData.append('title', videoTitle);
+        formData.append('description', videoDescription);
+        formData.append('image', file);
+
+        try {
+            await uploadVideo(formData);
+            setSubmitSuccess(true);
+            toast.success('Upload successful!', {
+                position: "top-center",
+                autoClose: 2000
+            });
+        } catch (error) {
+            toast.error('Failed to upload video.', {
+                position: "top-center",
+                autoClose: 2000
+            });
+        }
     };
 
     const handleCancel = () => {
@@ -118,13 +130,14 @@ function VideoUploadForm() {
                     <p className="video-upload-form__video-title">VIDEO THUMBNAIL</p>
                     <img
                         className="video-upload-form__video-image"
-                        src={runner}
+                        src={file ? URL.createObjectURL(file) : runner}
                         alt="Upload Thumbnail"
                         onClick={triggerFileInput}
                     />
                     <input
                         id="fileInput"
                         type="file"
+                        accept="image/*"
                         onChange={handleFileChange}
                         style={{ display: 'none' }}
                     />
