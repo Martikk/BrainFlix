@@ -1,0 +1,61 @@
+@import "../../styles/mixin";
+@import "../../styles/variables";
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1050;
+}
+
+.modal {
+  background-color: $white;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba($black, 0.1);
+  width: 90%;
+  max-width: 500px;
+  padding: $padding-standard;
+  z-index: 1051;
+
+  @media (max-width: $breakpoint-mobile) {
+    max-width: 300px;
+  }
+}
+
+.modal-content {
+  margin-bottom: 20px;
+  text-align: center;
+  color: $text-color;
+  font-size: 16px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  padding-top: 10px;
+}
+
+.modal-button {
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-weight: bold;
+  border-radius: 4px;
+  transition: background-color 0.3s;
+  font-size: 16px;
+
+  &.confirm {
+    background-color: $blue;
+    color: $white;
+
+    &:hover {
+      background-color: darken($blue, 10%);
+    }
+  }
+}
