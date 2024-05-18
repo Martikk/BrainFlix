@@ -58,16 +58,16 @@ export const likeVideo = async (videoId) => {
 
 export const uploadVideo = async (formData) => {
     try {
-        const { data } = await apiClient.post('/videos', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        });
-        return data;
+      const { data } = await apiClient.post('/videos', formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      });
+      return data;
     } catch (error) {
-        console.error('Failed to upload video:', error);
-        throw error;
+      console.error('Failed to upload video:', error);
+      throw error;
     }
-};
+  };
 
 
