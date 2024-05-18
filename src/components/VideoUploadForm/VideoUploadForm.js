@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PopUpModal from '../PopUpModal/PopUpModal';
 import successBackground from '../../assets/Images/loading.gif';
-import { uploadVideo } from '../../api/api';
+import axios from 'axios';
 import { UserContext } from '../../context/UserContext';
 
 function VideoUploadForm() {
@@ -34,14 +34,13 @@ function VideoUploadForm() {
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,
-        accept: 'image/*',
-        maxFiles: 1
+        multiple: false // One file at a time
     });
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!videoTitle.trim() || !videoDescription.trim() || !file) {
-            toast.error('Please fill in all fields and upload an image.', {
+            toast.error('Please fill in all fields and upload a file.', {
                 position: "top-center",
                 autoClose: 2000
             });
@@ -49,13 +48,27 @@ function VideoUploadForm() {
         }
 
         const formData = new FormData();
-        formData.append('title', videoTitle);
-        formData.append('description', videoDescription);
-        formData.append('channel', userName);  // Include username as the channel name
-        formData.append('image', file);
+        formData.append('file', file);
 
         try {
-            await uploadVideo(formData);
+            const response = await axios.post('/api/upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+
+            const fileUrl = response.data.imageUrl;
+
+            const videoData = {
+                title: videoTitle,
+                description: videoDescription,
+                channel: userName,
+                image: fileUrl,
+                video: fileUrl // Assuming the uploaded file is the video file
+            };
+
+            await axios.post('/videos', videoData);
+
             setSubmitSuccess(true);
             toast.success('Upload successful!', {
                 position: "top-center",
@@ -139,10 +152,10 @@ function VideoUploadForm() {
                         <input {...getInputProps()} />
                         {
                             isDragActive ?
-                                <p>Drop the files here ...</p> :
-                                <p>Drag 'n' drop some files here, or click to select files</p>
+                                <p>Drop the file here ...</p> :
+                                <p>Drag 'n' drop a file here, or click to select a file</p>
                         }
-                        {file && <img className="video-upload-form__dropzone__image" src={URL.createObjectURL(file)} alt="Upload Thumbnail" />}
+                        {file && <p className="video-upload-form__dropzone__file">{file.name}</p>}
                     </div>
                 </div>
                 <div className="video-upload-form__input-section">
