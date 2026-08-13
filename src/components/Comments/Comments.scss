@@ -1,11 +1,11 @@
-@import "../../styles/mixin";
-@import "../../styles/variables";
+@use "../../styles/mixin";
+@use "../../styles/variables";
 
 .comments {
     padding-left: 5px;
     &__item {
         display: flex;
-        border-bottom: 1px solid $mercury;
+        border-bottom: 1px solid variables.$mercury;
         padding-bottom: 15px;
         position: relative;
 
@@ -31,7 +31,7 @@
     &__from {
         display: flex;
         justify-content: space-between;
-        padding-right: $padding-horizontal;
+        padding-right: variables.$padding-horizontal;
         column-gap: 20px;
     }
     &__author {
@@ -42,7 +42,7 @@
     }
 
     &__date {
-        color: $silver;
+        color: variables.$silver;
         font-size: 0.82rem;
         font-family: 'Avenir Next Regular';
         margin: 20px 1px 0 0;
@@ -51,13 +51,13 @@
 
     &__user-icon {
         margin-right: 10px;
-        margin-top: $margin-side;
+        margin-top: variables.$margin-side;
         position: relative;
 
 
         &::after {
             content: "";
-            background-color: $mercury;
+            background-color: variables.$mercury;
             width: 42px;
             height: 42px;
             border-radius: 50%;

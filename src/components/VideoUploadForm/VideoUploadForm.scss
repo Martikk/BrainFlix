@@ -1,16 +1,16 @@
-@import "../../styles/mixin";
-@import "../../styles/variables";
+@use "../../styles/mixin";
+@use "../../styles/variables";
 
 .video-upload-form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: $white;
+  background-color: variables.$white;
   padding-left: 20px;
   padding-right: 20px;
 
   &__separator_2, {
-    @include tablet {
+    @include mixin.tablet {
       width: 95%;
       border-top: 1px solid #E1E1E1;
       height: 1px;
@@ -19,7 +19,7 @@
   }
   
   &__separator_3 {
-    @include desktop {
+    @include mixin.desktop {
       width: 99%;
       border-top: 1px solid #E1E1E1;
       height: 1px;
@@ -27,12 +27,12 @@
     }
   }
   
-  @include tablet {
+  @include mixin.tablet {
     align-items: flex-start;
     padding-left: 45px;
   }
   
-  @include tablet {
+  @include mixin.tablet {
     padding-left: 10vw;
     padding-right: 10vw;
   }
@@ -43,7 +43,7 @@
     font-family: 'Avenir Next Bold';
     font-size: 2rem;
 
-    @include tablet {
+    @include mixin.tablet {
       margin: 20px 0;
       padding: 0;
     }
@@ -51,7 +51,7 @@
 
   &__form {
     width: 95%;
-    @include desktop {
+    @include mixin.desktop {
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-end;
@@ -59,13 +59,13 @@
   }
 
   &__form__input-container {
-    @include desktop {
+    @include mixin.desktop {
       width: 30%;
     }
   }
 
   &__input-section {
-    @include desktop {
+    @include mixin.desktop {
       width: 64%;
       padding-left: 50px;
     }
@@ -74,7 +74,7 @@
   &__textarea-title,
   &__video-title,
   &__input-title {
-    color: $silver;
+    color: variables.$silver;
     font-family: 'Avenir Next Demi';
     font-size: 1rem;
     margin: 0;
@@ -95,14 +95,14 @@
   &__textarea {
     padding: 10px;
     font-size: 16px;
-    background-color: $alabaster;
-    border-color: $mercury;
+    background-color: variables.$alabaster;
+    border-color: variables.$mercury;
     border-radius: 4px;
     text-indent: 15px;
 
     &:focus {
       outline: none;
-      border-color: $blue;
+      border-color: variables.$blue;
     }
   }
 
@@ -111,8 +111,8 @@
     resize: none;
     padding: 0;
     font-size: 16px;
-    background-color: $alabaster;
-    border: 1px solid $mercury;
+    background-color: variables.$alabaster;
+    border: 1px solid variables.$mercury;
     border-radius: 4px;
     text-indent: 15px;
     box-shadow: none;
@@ -123,8 +123,8 @@
     resize: none;
     padding: 10px;
     font-size: 16px;
-    background-color: $alabaster;
-    border: 1px solid $mercury;
+    background-color: variables.$alabaster;
+    border: 1px solid variables.$mercury;
     border-radius: 4px;
     text-indent: 15px;
     box-shadow: none;
@@ -135,7 +135,7 @@
     justify-content: space-between;
     margin-top: 20px;
     flex-direction: column-reverse;
-    @include tablet {
+    @include mixin.tablet {
       display: flex;
       flex-direction: row;
       gap: 50px;
@@ -149,19 +149,19 @@
     cursor: pointer;
     border: none;
     border-radius: 5px;
-    background-color: $blue;
+    background-color: variables.$blue;
     color: white;
     transition: background-color 0.3s;
     font-family: 'Avenir Next Demi';
 
     &--cancel {
       background-color: transparent;
-      color: $blue;
+      color: variables.$blue;
 
       &:hover {
         color: red;
       }
-      @include tablet {
+      @include mixin.tablet {
         margin-bottom: 20px;
       }
     }
@@ -169,19 +169,19 @@
     &--publish {
       height: 60px;
       background: url('../../assets/Icons/upload.svg') no-repeat 10px center / 30px 30px;
-      background-color: $blue;
+      background-color: variables.$blue;
       border-radius: 5px;
       border: none;
-      color: $white;
+      color: variables.$white;
       transition: transform 0.3s ease;
-      @include tablet {
+      @include mixin.tablet {
         width: 160px;
         height: 40px;
         padding-left: 40px;
       }
       &:hover {
         transform: scale(1.1);
-        background-color: $dark-blue;
+        background-color: variables.$dark-blue;
       }
     }
   }
@@ -195,9 +195,9 @@
     height: 190px;
     padding: 10px;
     margin: 10px 0px;
-    border: 2px dashed $blue;
+    border: 2px dashed variables.$blue;
     border-radius: 5px;
-    background-color: $alabaster;
+    background-color: variables.$alabaster;
     cursor: pointer;
     transition: border-color 0.3s ease;
     position: relative;
@@ -212,12 +212,12 @@
 }
 
     &:hover {
-      border-color: $dark-blue;
+      border-color: variables.$dark-blue;
     }
 
     p {
       font-size: 16px;
-      color: $silver;
+      color: variables.$silver;
     }
 
     &__image {
