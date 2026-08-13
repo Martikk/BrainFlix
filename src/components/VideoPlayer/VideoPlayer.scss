@@ -1,5 +1,5 @@
-@import "../../styles/mixin";
-@import "../../styles/variables";
+@use "../../styles/mixin";
+@use "../../styles/variables";
 
 .hero {
     &__video {
@@ -8,7 +8,7 @@
       height: auto;
       max-height: 300px;
 
-        @include tablet {
+        @include mixin.tablet {
           padding-left: 5%;
           padding-right: 5%;
           width: 90%;
@@ -16,7 +16,7 @@
           max-height: 400px;
         }
         
-        @include desktop {
+        @include mixin.desktop {
           padding-left: 17%;
           padding-right: 17%;
           width: 67%;

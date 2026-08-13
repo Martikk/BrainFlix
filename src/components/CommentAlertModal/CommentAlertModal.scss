@@ -1,5 +1,6 @@
-@import "../../styles/mixin";
-@import "../../styles/variables";
+@use "sass:color";
+@use "../../styles/mixin";
+@use "../../styles/variables";
 
 .modal-overlay {
   position: fixed;
@@ -15,15 +16,15 @@
 }
 
 .modal {
-  background-color: $white;
+  background-color: variables.$white;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba($black, 0.1);
+  box-shadow: 0 4px 8px rgba(variables.$black, 0.1);
   width: 90%;
   max-width: 500px;
-  padding: $padding-standard;
+  padding: variables.$padding-standard;
   z-index: 1051;
 
-  @media (max-width: $breakpoint-mobile) {
+  @media (max-width: variables.$breakpoint-mobile) {
     max-width: 300px;
   }
 }
@@ -31,7 +32,7 @@
 .modal-content {
   margin-bottom: 20px;
   text-align: center;
-  color: $text-color;
+  color: variables.$text-color;
   font-size: 16px;
 }
 
@@ -51,11 +52,11 @@
   font-size: 16px;
 
   &.confirm {
-    background-color: $blue;
-    color: $white;
+    background-color: variables.$blue;
+    color: variables.$white;
 
     &:hover {
-      background-color: darken($blue, 10%);
+      background-color: color.adjust(variables.$blue, $lightness: -10%);
     }
   }
 }

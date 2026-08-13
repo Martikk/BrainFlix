@@ -1,5 +1,6 @@
-@import "../../styles/mixin";
-@import "../../styles/variables";
+@use "sass:list";
+@use "../../styles/mixin";
+@use "../../styles/variables";
 
 .video-list {
     list-style: none; 
@@ -9,12 +10,12 @@
     flex-direction: column;
     justify-content: flex-start;
 
-  @include tablet  {
+  @include mixin.tablet  {
     padding-left: 40px;
     padding-right: 30px;
   }
   
-    @include desktop  {
+    @include mixin.desktop  {
         position: absolute;
         right: 0;
         width: 30%;
@@ -27,29 +28,29 @@
         cursor: pointer;
         align-items: center;
         &:hover {
-            background-color: $dark-white;
+            background-color: variables.$dark-white;
         }
 
         img {
             width: 130px;
             height: 80px;
-            margin-right: $video-margin-right;
+            margin-right: variables.$video-margin-right;
             padding: 5px;
             border-radius: 10px;
             
-            @include tablet  {
-                width: nth($image-size, 1);
-                height: nth($image-size, 2);
-                padding: $padding-standard;
-                border-radius: $border-radius-large;
+            @include mixin.tablet  {
+                width: list.nth(variables.$image-size, 1);
+                height: list.nth(variables.$image-size, 2);
+                padding: variables.$padding-standard;
+                border-radius: variables.$border-radius-large;
               }
 
         }
 
         &__thumbnail {
-            width: nth($thumbnail-size, 1);
-            height: nth($thumbnail-size, 2);
-            margin-right: $video-margin-right;
+            width: list.nth(variables.$thumbnail-size, 1);
+            height: list.nth(variables.$thumbnail-size, 2);
+            margin-right: variables.$video-margin-right;
         }
 
         &__info {
@@ -66,7 +67,7 @@
     }
 
     &__maintitle {
-        color: $silver;
+        color: variables.$silver;
         padding-left: 15px;
         font-size: 0.8rem;
     }

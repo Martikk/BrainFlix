@@ -1,14 +1,14 @@
-@import "../../styles/mixin";
-@import "../../styles/variables";
+@use "../../styles/mixin";
+@use "../../styles/variables";
 
 .comment-form {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-end;
     padding: 15px 20px 20px 0;
-    border-bottom: 1px solid $mercury;
+    border-bottom: 1px solid variables.$mercury;
 
-    @include tablet {
+    @include mixin.tablet {
         flex-wrap: nowrap;
         align-items: center;
         justify-content: flex-start;
@@ -46,7 +46,7 @@
             opacity: 1;
         }
 
-        @include tablet {
+        @include mixin.tablet {
             margin-right: 10%;
             margin-left: 10px;
         }
@@ -58,10 +58,10 @@
         resize: none;
         border-radius: 5px;
         text-indent: 15px;
-        background-color: $alabaster;
-        border-color: $mercury;
+        background-color: variables.$alabaster;
+        border-color: variables.$mercury;
 
-        @include tablet {
+        @include mixin.tablet {
             width: 60%;
             height: 35px;
             line-height: 32px;
@@ -72,19 +72,19 @@
         margin-top: 20px;
         width: 80%;
         background: url('../../assets/Icons/add_comment.svg') no-repeat 10px center / 20px 20px;
-        background-color: $blue;
+        background-color: variables.$blue;
         height: 50px;
         border-radius: 5px;
         border: none;
         font-family: 'Avenir Next Demi';
-        color: $white;
+        color: variables.$white;
 
         &:hover {
-            background-color: $dark-blue;
+            background-color: variables.$dark-blue;
             cursor: pointer;
         }
 
-        @include tablet {
+        @include mixin.tablet {
             width: 22%;
             height: 40px;
             margin-top: 0;
@@ -95,12 +95,12 @@
 
 .comments_titles {
     font-family: 'Avenir Next Regular';
-    color: $silver;
+    color: variables.$silver;
     font-size: 0.8rem;
     margin: 0;
     padding-left: 19%;
 
-    @include tablet {
+    @include mixin.tablet {
         padding-top: 20px;
         padding-left: 16%;
     }

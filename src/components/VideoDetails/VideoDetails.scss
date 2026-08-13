@@ -1,5 +1,5 @@
-@import "../../styles/mixin";
-@import "../../styles/variables";
+@use "../../styles/mixin";
+@use "../../styles/variables";
 
 .hero {
 
@@ -12,7 +12,7 @@
     font-family: 'Avenir Next Bold';
     font-size: 1.5rem;
 
-    @include tablet {
+    @include mixin.tablet {
       font-size: 2.0625rem;
     }
 
@@ -21,10 +21,10 @@
     display: flex;
     align-items: center;
     flex-wrap: nowrap;
-    border-top:1px solid $mercury;
-    border-bottom: 1px solid $mercury;
+    border-top:1px solid variables.$mercury;
+    border-bottom: 1px solid variables.$mercury;
 
-    @include tablet  {
+    @include mixin.tablet  {
       border-top: none;
       width: 100%;
       justify-content: space-between;
@@ -34,7 +34,7 @@
   &__channel {
     width: 50%;
 
-    @include tablet  {
+    @include mixin.tablet  {
       width: 45%;
       display: flex;
     }
@@ -46,23 +46,23 @@
   &__like {
     display: flex;
     align-items: center;
-    margin-right: $stat-margin; 
+    margin-right: variables.$stat-margin; 
     padding: 5px 0;
     background: none;
     border: none;
-    color: $silver; 
+    color: variables.$silver; 
     padding: 5px; 
 
 
-    @include tablet  {
+    @include mixin.tablet  {
       margin-right: 0; 
-      margin: 0 $stat-margin;
+      margin: 0 variables.$stat-margin;
     }
     
     &::before {
       display: inline-block;
-      width: $icon-size;
-      height: $icon-height;
+      width: variables.$icon-size;
+      height: variables.$icon-height;
       margin-right: 2px;
       vertical-align: middle;
     }
@@ -77,7 +77,7 @@
   }
 
   &__statistic {
-    @include tablet  {
+    @include mixin.tablet  {
       display: flex;
       align-items: center;
     }
@@ -90,12 +90,12 @@
 }
 
 .hero__channel__author {
-  @include tablet  {
+  @include mixin.tablet  {
     margin: 0;
     font-family: 'Avenir Next Demi';
     font-size: 0.8125rem;
 
-    @include tablet {
+    @include mixin.tablet {
       font-size: 0.875rem;
     }
   }
@@ -104,9 +104,9 @@
 .hero__channel__data {
   font-family: 'Avenir Next Regular';
   font-size: 0.8125rem;
-  color: $silver;
+  color: variables.$silver;
   
-  @include tablet {
+  @include mixin.tablet {
     margin: 0px 40px;
   }
 }
